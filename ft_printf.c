@@ -6,7 +6,7 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 05:40:01 by shabibol          #+#    #+#             */
-/*   Updated: 2022/03/08 18:50:37 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/03/09 17:01:17 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft_printf.h"
@@ -26,22 +26,27 @@ t_print	*ft_initialize_flags(t_print *tab)
 	return (tab);
 }
 
-int	ft_eval_format(t_print *tab, va_list arg, const char *str, int i)
+int	ft_eval_format(t_print *tab, const char *str, int i)
 {
+	while (str[i] != 'd' || str[i] != 'c' || str[i] != 'u' || str[i] != 'X' || str[i] != 'x' || str[i] != 'p' || str[i] != 's')
+	{
+		ft_pf_EvalFlag(tab, str, i);
+		i++;
+	}
 	if (str[i] == 'd' || str[i] == 'i')
-		ft_pf_putnbr(va_arg(arg, int));
+		ft_printinteger(tab);
 	if (str[i] == 'c')
-		ft_pf_putchar(va_arg(arg, char));
+		ft_printchar(tab);
 	if (str[i] == 's')
-		ft_pf_putstr(va_arg(arg, char *));
+		ft_printstr(tab);
 	if (str[i] == 'u')
-		ft_pf_putnbr_unsigned(va_arg(arg, unsigned int));
+		ft_pringdecimal(tab);
 	if (str[i] == 'x')
-		ft_pf_putnbr_hexlow(va_arg(arg, int));
+		ft_printhex(tab);
 	if (str[i] == 'X')
-		ft_pf_putnbr_hexup(va_arg(arg, int));
+		ft_printhex(tab);
 	if (str[i] == 'p')
-		
+//		(unsigned long)va_arg(arg, void *)
 	return (i);
 }
 
@@ -50,23 +55,23 @@ int	ft_printf(const char* str , ...)
 	t_print	*tab;
 	int		i;
 	int		res;
+	va_list	arg;
 
 	tab = (t_print *) malloc (sizeof(t_print));
 	if (!tab)
 		return (0);
 	ft_initialize_flags(tab);
-	va_list	arg;
-	va_start(arg, str);
+	va_start(tab->arg, str);
 
 	res = 0;
 	i = 0;
 	while (str[i])
 	{
 		if (str[i] == '%')
-			res = res + ft_eval_format(tab, arg, str, i + 1);
+			res = res + ft_eval_format(tab, str, i + 1);
 		else
 		{
-			write(1, &str[i], 1);
+			ft_pf_putchar(str[i]);
 			res += res;
 		}
 		i++;

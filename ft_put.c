@@ -6,7 +6,7 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 12:24:54 by shabibol          #+#    #+#             */
-/*   Updated: 2022/03/07 19:05:13 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/03/09 21:59:51 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,14 @@ void	ft_pf_putnbr(int n)
 		nbr = nbr + 1;
 	}
 	if (nbr >= 10)
-		ft_pf_putnbr(nbr / 10);
+		ft_pf_putnbr_unsigned(nbr / 10);
 	ft_pf_putchar(nbr % 10 + '0');
 }
 
-void	ft_pf_putnbr_unsigned(unsigned int n)
+void	ft_pf_putnbr_u(unsigned int n)
 {
 	if (n >= 10)
-		ft_pf_putnbr_unsigned(n / 10);
+		ft_pf_putnbr_u(n / 10);
 	ft_pf_putchar(n % 10 + '0');
 }
 
@@ -78,6 +78,8 @@ void	ft_pf_pointer(void *p)
 {
 
 }
+
+#include <stdio.h>
 int	main(void)
 {
 	int	a;
@@ -87,5 +89,6 @@ int	main(void)
 //	p = &a;
 
 //	ft_pf_putnbr(42949i67295);
-	printf("%.1d",-299.7);
+	printf("%#040x", 44);
+
 }

@@ -6,7 +6,7 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 17:35:02 by shabibol          #+#    #+#             */
-/*   Updated: 2022/03/07 19:04:51 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/03/09 17:02:23 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,23 +19,25 @@
 
 typedef	struct s_print
 {
-	va_list	args; //argument to print out
+	va_list	arg; //argument to print out
 	int	width; //
 	int	precision; //
-	int	zero; //padding with zero
+	int	len; //lenght to be printed
+	int	zero; //padding with zero only used for numbers
 	int	dash; //- it left justifies
 	int	pnt; //number of digits to be displayed
 	int	hashtag; //add 0x before when used with x X. d/s/c is ignored
 	int	space; //insert a space before. when used with + ignore
-	int	sign; // add signs to numbers
+	int	sign; // pos or neg number
 	int	is_zero; //if it is number zero
 	int	perc; // if it is %
 }t_print;
 
 void	ft_pf_putchar(char c);
 void	ft_pf_putstr(char *s);
-void	ft_pf_putnbr(int n);
-void	ft_pf_putnbr_unsigned(unsigned int n);
+void	ft_pf_putnbr_signed(int n);
+void	ft_pf_putnbr_unsigned(int n);
+void	ft_pf_putnbr_u(unsigned int n);
 void	ft_pf_putnbr_hexup(unsigned int nbr);
 void	ft_pf_putnbr_hexlow(unsigned int nbr);
 void	ft_pf_pointer(void *p);
