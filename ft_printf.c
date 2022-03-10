@@ -6,7 +6,7 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 05:40:01 by shabibol          #+#    #+#             */
-/*   Updated: 2022/03/09 17:01:17 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/03/10 21:18:35 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft_printf.h"
@@ -24,37 +24,6 @@ t_print	*ft_initialize_flags(t_print *tab)
 	tab->is_zero = 0;
 	tab->perc = 0;
 	return (tab);
-}
-
-int	ft_eval_format(t_print *tab, const char *str, int i)
-{
-	while (str[i] != 'd' || str[i] != 'c' || str[i] != 'u' || str[i] != 'X' || str[i] != 'x' || str[i] != 'p' || str[i] != 's')
-	{
-		if (ft_isdigit(str[i] == 0)//check if str[i] is not between 1-9
-		{
-			ft_pf_EvalFlag(tab, str[i]);
-			i++;
-		}
-		if (ft_isdigit(str[i] == 1)//check if str[i] is between 1-9
-			ft_store_width(tab, str, i);//store the rest of the digits as width
-		if (str[i] == '.')
-			ft_store_prec(tab, str, i);//store the rest of the numbers as the precisions
-	}
-	if (str[i] == 'd' || str[i] == 'i')
-		ft_printinteger(tab);
-	if (str[i] == 'c')
-		ft_printchar(tab);
-	if (str[i] == 's')
-		ft_printstr(tab);
-	if (str[i] == 'u')
-		ft_pringdecimal(tab);
-	if (str[i] == 'x')
-		ft_printhex(tab);
-	if (str[i] == 'X')
-		ft_printhex(tab);
-	if (str[i] == 'p')
-//		(unsigned long)va_arg(arg, void *)
-	return (i);
 }
 
 int	ft_printf(const char* str , ...)

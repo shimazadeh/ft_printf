@@ -6,7 +6,7 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 17:35:02 by shabibol          #+#    #+#             */
-/*   Updated: 2022/03/09 17:02:23 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/03/10 22:03:57 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,19 @@ typedef	struct s_print
 	int	perc; // if it is %
 }t_print;
 
+int	ft_isdigit(int c);
+int	ft_atoi(const char *str);
+int	ft_str_count(const char *str, int start, char *s);
+int	ft_eval_format(t_print *tab, const char *str, int i);
+
+char	*ft_padding_left(t_print *tab, char padding);
+char	*ft_padding_right(t_print *tab, char padding);
+
+t_print	*ft_pf_EvalFlag(t_print *tab, const char c);
+t_print	*ft_width_precision(t_print *tab, const char *str, int i, int flag);
+t_print	*ft_update_tab(t_print *tabb, const char *str, int i);
+t_print	*ft_initialize_flags(t_print *tab);
+
 void	ft_pf_putchar(char c);
 void	ft_pf_putstr(char *s);
 void	ft_pf_putnbr_signed(int n);
@@ -42,8 +55,4 @@ void	ft_pf_putnbr_hexup(unsigned int nbr);
 void	ft_pf_putnbr_hexlow(unsigned int nbr);
 void	ft_pf_pointer(void *p);
 
-int	ft_eval_format(va_list arg, const char *str, int i);
-
-t_print	*ft_initialize_flagst(t_print *tab);
-t_print	*ft_pf_EvalFlag(t_print *tab, const char *str, int i);
 #endif
