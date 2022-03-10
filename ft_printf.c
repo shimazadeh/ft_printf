@@ -30,8 +30,15 @@ int	ft_eval_format(t_print *tab, const char *str, int i)
 {
 	while (str[i] != 'd' || str[i] != 'c' || str[i] != 'u' || str[i] != 'X' || str[i] != 'x' || str[i] != 'p' || str[i] != 's')
 	{
-		ft_pf_EvalFlag(tab, str, i);
-		i++;
+		if (ft_isdigit(str[i] == 0)//check if str[i] is not between 1-9
+		{
+			ft_pf_EvalFlag(tab, str[i]);
+			i++;
+		}
+		if (ft_isdigit(str[i] == 1)//check if str[i] is between 1-9
+			ft_store_width(tab, str, i);//store the rest of the digits as width
+		if (str[i] == '.')
+			ft_store_prec(tab, str, i);//store the rest of the numbers as the precisions
 	}
 	if (str[i] == 'd' || str[i] == 'i')
 		ft_printinteger(tab);

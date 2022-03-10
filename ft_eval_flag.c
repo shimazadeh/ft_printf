@@ -11,25 +11,22 @@
 /* ************************************************************************** */
 #include "libft_printf.h"
 
-t_print	*ft_pf_EvalFlag(t_print *tab, const char *str, int i)
+t_print	*ft_pf_EvalFlag(t_print *tab, const char c)
 {
-	if (str[i] == '.')
+	if (c == '.')
 		tab->pnt = 1;
-	if (str[i] == '-')
+	if (c == '-')
 		tab->dash = 1;
-	if (str[i] == 0)
-		tab->zero = 1;
-	if (str[i] == '#')
+	if (c == '#')
 		tab->hashtag = 1;
-	if (str[i] == ' ')
+	if (c == ' ')
 		tab->space = 1;
-	if (str[i] == '%')
+	if (c == '%')
 		tab->perc = 1;
-	if (str[i] == '+')
+	if (c == '+')
 		tab->sign = 1;
-//	if (ft_isdigit(str[i]) == 1) 
-//		tab->width = 1;
-	i++;
+	if (c == 0)
+		tab->zero = 1;
 	return (tab);
 }
 
@@ -61,7 +58,7 @@ void	ft_printstr(t_print *tab)//relevant flag: #, 0, + is ignored
 
 	str = va_arg(tab->arg, char *);
 	if(tab->width && tab->dash)//left justified
-		
+
 	else
 		ft_pf_putstr(tab->arg);
 }
@@ -72,7 +69,7 @@ void	ft_printhex(t_print	*tab)//relevant flags:dash, zero, #
 
 	a = va_arg(tab->arg, unsigned int);
 	if(tab->hashtag)
-		/
+		
 	if(tab->width && tab->dash && tab->zero)
 
 	if(tab->width && tab->zero && !tab->dash)
