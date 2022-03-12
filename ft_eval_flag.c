@@ -46,27 +46,34 @@ void	ft_printstr(t_print *tab)//relevant flag: 0, dash, space. # & + ignored
 	char	*str;
 	
 	if(tab->width && !tab->zero && !tab->dash)
-		str = ft_padding_right(tab, ' ');
+		str = ft_str_padding_right(tab, ' ');
 	if(tab->width && tab->zero && !tab->dash)
-		str = ft_padding_right(tab, '0');
+		str = ft_str_padding_right(tab, '0');
 	if(tab->width && tab->dash)
-		str = ft_padding_left(tab, ' ');
+		str = ft_str_padding_left(tab, ' ');
 	if(tab->width && tab->dash && tab->space)
-		str = ft_padding_left(tab, ' ');
+		str = ft_str_padding_left(tab, ' ');
 	if(tab->width && !tab->dash && tab->space)
-		str = ft_padding_right(tab, ' ');
+		str = ft_str_padding_right(tab, ' ');
+	else //for when width doesnt exist
 	ft_pf_putstr(str);
 }
 
-void	ft_printinteger(t_print *tab)//flags: dash, zero, space, sign
+void	ft_printinteger(t_print *tab)//flags: dash, zero, space, sign //0 is ignored with dash
 {
-	char	a;
+	int		src;
+	char	*res;
 
-	a = va_arg(tab->arg, int);
+	src = va_arg(tab->arg, int);
 	if(tab->width && tab->dash)
-		ft_right_int(tab, 0);
-	if(tab->width && tab->dash)
-		ft_left_int(tab, 0);
+		res = ft_padding_integer_righ(tab, ' ');//pad space after the number
+	if(tab->width && !tab->dash && tab->zero)// if space exist with this conditions output is the same
+		res = ft_integer_padding_betsign(tab, '0');//pad 0 in between the sign and number 
+	if(tab->width && !tab->dash && tab->space && !tab->zero)
+		res = ft_integer_padding_left(tab, ' ');//pad space before the number
+	if(tab->width && tab->dash && tab->space)
+		res = ft_integer_padding_right(tab, ' ');//pad space after the number
+	if
 }
 
 void	ft_printhex(t_print	*tab)//relevant flags:dash, zero, # 

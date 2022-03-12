@@ -9,7 +9,7 @@
 /*   Updated: 2022/03/10 21:03:47 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <libft_printf.h>
+#include "libft_printf.h"
 
 int	ft_isdigit(int c)
 {
@@ -44,4 +44,44 @@ int	ft_atoi(const char *str)
 		i++;
 	}
 	return (result * sign);
+}
+
+size_t	ft_get_digits(int n)
+{
+	size_t	size;
+
+	size = 0;
+	while (n)
+	{
+		n /= 10;
+		size++;
+	}
+	return (size);
+}
+
+char	*ft_itoa(int n)
+{
+	char		*result;
+	long int	num;
+	size_t		digit;
+
+	num = n;
+	digit = ft_get_digits(n);
+	if (n <= 0)
+	{
+		num *= -1;
+		digit++;
+	}
+	result = (char *)malloc(sizeof(char) * (digit + 1));
+	if (!result)
+		return (NULL);
+	result[digit] = '\0';
+	while (digit--)
+	{
+		result[digit] = num % 10 + '0';
+		num = num / 10;
+	}
+	if (n < 0)
+		result[0] = '-';
+	return (result);
 }

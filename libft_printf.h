@@ -38,8 +38,9 @@ int	ft_atoi(const char *str);
 int	ft_str_count(const char *str, int start, char *s);
 int	ft_eval_format(t_print *tab, const char *str, int i);
 
-char	*ft_padding_left(t_print *tab, char padding);
-char	*ft_padding_right(t_print *tab, char padding);
+char	*ft_padding_left(char *src, char padding, int width);
+char	*ft_padding_right(char *src, char padding, int width);
+char	*ft_itoa(int n);
 
 t_print	*ft_pf_EvalFlag(t_print *tab, const char c);
 t_print	*ft_width_precision(t_print *tab, const char *str, int i, int flag);
