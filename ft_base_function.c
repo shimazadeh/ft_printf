@@ -6,14 +6,23 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 20:11:37 by shabibol          #+#    #+#             */
-/*   Updated: 2022/03/10 21:03:47 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/03/12 23:01:50 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft_printf.h"
 
 int	ft_isdigit(int c)
 {
-	if (c >= 48 && c <= 57)
+	if (c >= '1' && c <= '9')
+		return (1);
+	return (0);
+}
+
+int	ft_strchr_boolean(char c, char *str)
+{
+	while (*str && *str != c)
+		str++;
+	if (*str == c)
 		return (1);
 	return (0);
 }
@@ -83,5 +92,32 @@ char	*ft_itoa(int n)
 	}
 	if (n < 0)
 		result[0] = '-';
+	return (result);
+}
+
+char	*ft_itoa_sign(int n)
+{
+	char		*result;
+	long int	num;
+	size_t		digit;
+
+	num = n;
+	digit = ft_get_digits(n);
+	if (n <= 0)
+		num *= -1;
+	digit++;
+	result = (char *)malloc(sizeof(char) * (digit + 1));
+	if (!result)
+		return (NULL);
+	result[digit] = '\0';
+	while (digit--)
+	{
+		result[digit] = num % 10 + '0';
+		num = num / 10;
+	}
+	if (n < 0)
+		result[0] = '-';
+	else
+		result[0] = '+';
 	return (result);
 }

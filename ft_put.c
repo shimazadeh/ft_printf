@@ -6,12 +6,12 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 12:24:54 by shabibol          #+#    #+#             */
-/*   Updated: 2022/03/09 21:59:51 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/03/12 22:31:36 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft_printf.h"
-
+/*
 void	ft_pf_putchar(char c)
 {
 	write(1, &c, 1);
@@ -78,17 +78,9 @@ void	ft_pf_pointer(void *p)
 {
 
 }
-
+*/
 #include <stdio.h>
 int	main(void)
 {
-	int	a;
-//	void	*p;
-
-	a = 4;
-//	p = &a;
-
-//	ft_pf_putnbr(42949i67295);
-	printf("%#040x", 44);
-
+	printf("%+d", 44);
 }

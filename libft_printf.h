@@ -6,7 +6,7 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 17:35:02 by shabibol          #+#    #+#             */
-/*   Updated: 2022/03/10 22:03:57 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/03/12 20:18:25 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,17 @@ typedef	struct s_print
 
 int	ft_isdigit(int c);
 int	ft_atoi(const char *str);
-int	ft_str_count(const char *str, int start, char *s);
-int	ft_eval_format(t_print *tab, const char *str, int i);
+int	ft_str_count(const char *str);
+int	ft_eval_format(t_print *tab, const char *str);
+int	ft_strchr_boolean(char c, char *str);
 
 char	*ft_padding_left(char *src, char padding, int width);
 char	*ft_padding_right(char *src, char padding, int width);
 char	*ft_itoa(int n);
 
 t_print	*ft_pf_EvalFlag(t_print *tab, const char c);
-t_print	*ft_width_precision(t_print *tab, const char *str, int i, int flag);
-t_print	*ft_update_tab(t_print *tabb, const char *str, int i);
+const char	*ft_width_precision(t_print *tab, const char *str, int flag);
+void	ft_update_tab(t_print *tab, const char *str);
 t_print	*ft_initialize_flags(t_print *tab);
 
 void	ft_pf_putchar(char c);

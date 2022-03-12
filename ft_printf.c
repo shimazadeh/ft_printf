@@ -6,7 +6,7 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 05:40:01 by shabibol          #+#    #+#             */
-/*   Updated: 2022/03/10 21:18:35 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/03/12 23:01:44 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft_printf.h"
@@ -22,14 +22,13 @@ t_print	*ft_initialize_flags(t_print *tab)
 	tab->space = 0;
 	tab->sign = 0;
 	tab->is_zero = 0;
-	tab->perc = 0;
+//	tab->perc = 0;
 	return (tab);
 }
-
+/*
 int	ft_printf(const char* str , ...)
 {
 	t_print	*tab;
-	int		i;
 	int		res;
 	va_list	arg;
 
@@ -40,18 +39,19 @@ int	ft_printf(const char* str , ...)
 	va_start(tab->arg, str);
 
 	res = 0;
-	i = 0;
-	while (str[i])
+	while (str)
 	{
-		if (str[i] == '%')
-			res = res + ft_eval_format(tab, str, i + 1);
+		if (*str == '%')
+			ft_initialize_flags(tab);
+			res = res + ft_eval_format(tab, str);
 		else
 		{
-			ft_pf_putchar(str[i]);
+			ft_pf_putchar(*str);
 			res += res;
 		}
-		i++;
+		str++;
 	}
 	va_end(arg);
 	return (res);
 }
+*/
