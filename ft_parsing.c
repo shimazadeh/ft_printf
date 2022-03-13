@@ -6,7 +6,7 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 18:46:47 by shabibol          #+#    #+#             */
-/*   Updated: 2022/03/13 08:13:09 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/03/13 10:47:13 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void	ft_update_tab(t_print *tab, const char *str)
 	if (tab->width)
 		tab->width_flag = 1;
 }
-
+/*
 #include <stdio.h>
 int	main(int ac, char **av)
 {
@@ -110,7 +110,7 @@ int	main(int ac, char **av)
 	printf("hashtag tag is		%d\n", tab->hashtag);
 	printf("the answer is	%s", "shima");
 }
-
+*/
 int	ft_eval_format(t_print *tab, const char *str)//to evaluate format
 {
 	ft_update_tab(tab, str);

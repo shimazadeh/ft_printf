@@ -6,7 +6,7 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 21:15:51 by shabibol          #+#    #+#             */
-/*   Updated: 2022/03/13 08:51:24 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/03/13 10:42:22 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft_printf.h"
@@ -199,10 +199,3 @@ char	*ft_int_add_char(int d, char c)
 	}
 	return (dest);
 }
-int	main(void)
-{
-	printf("starting here:%-+20d", 44);
-//	printf("%s", ft_padding_integer_right(-44, '0', 10));
-}
-
-

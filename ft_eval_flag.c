@@ -6,7 +6,7 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 18:39:46 by shabibol          #+#    #+#             */
-/*   Updated: 2022/03/13 08:54:02 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/03/13 10:48:46 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft_printf.h"
@@ -101,24 +101,46 @@ void	ft_printinteger(t_print *tab)//flags: dash, zero, space, sign //0 is ignore
 
 void	ft_printhex(t_print	*tab)//relevant flags:dash, zero, # 
 {
-	unsigned int a;
+	unsigned int	a;
+	int				size;
 
 	a = va_arg(tab->arg, unsigned int);
-	if(tab->hashtag)
-		
-	if(tab->width && tab->dash && tab->zero)
-
-	if(tab->width && tab->zero && !tab->dash)
-	
-	if(tab->hashtag)
-
+	size = ft_strlen(ft_itoa(a));
+	if(tab->width)
+	{
+		if(!tab->dash && tab->hashtag && !tab->zero)
+		{
+			ft_pf_putchar_width(' ', ((tab->width) - ft_strlen(ft_itoa(a)) - 2));
+			ft_pf_putstr("0x");
+			ft_pf_putnbr_hexlow(a);
+		}
+		if(tab->dash && tab->hashtag)
+		{
+			ft_pf_putstr("0x");
+			ft_pf_putnbr_hexlow(a);
+			ft_pf_putchar_width(' ', ((tab->width) - ft_strlen(ft_itoa(a)) -2));
+		}
+		if(tab->zero && tab->hashtag)
+		{
+			ft_pf_putstr("0x");
+			ft_pf_putchar_width('0', ((tab->width) - ft_strlen(ft_itoa(a)) -2));
+			ft_pf_putnbr_hexlow(a);
+		}
+		if(tab->zero && !tab->hashtag)
+		{
+			ft_pf_putchar_width('0', ((tab->width) - ft_strlen(ft_itoa(a))));
+			ft_pf_putnbr_hexlow(a);
+		}
+		if(tab->dash && !tab->hashtag)
+		{
+			ft_pf_putchar_width(' ', ((tab->width) - ft_strlen(ft_itoa(a))));
+			ft_pf_putnbr_hexlow(a);
+		}
+	}
+	if(!tab->width)
+	{
+		if (tab->hashtag)
+			ft_pf_putstr("0x");
+		ft_pf_putnbr_hexlow(a);
+	}
 }
-
-void	ft_printhex(t_print *tab)
-{
-	unsigned int a;
-
-	a = va_arg(tab->arg, unsigned int);
-
-}
-

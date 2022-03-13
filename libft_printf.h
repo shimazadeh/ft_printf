@@ -6,7 +6,7 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 17:35:02 by shabibol          #+#    #+#             */
-/*   Updated: 2022/03/13 07:42:36 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/03/13 10:47:50 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,10 @@ int	ft_atoi(const char *str);
 int	ft_str_count(const char *str);
 int	ft_eval_format(t_print *tab, const char *str);
 int	ft_strchr_boolean(char c, char *str);
+int	ft_strlen(char *str);
 
+
+char	*ft_itoa(int d);
 char	*ft_padding_left(char *src, char padding, int width);
 char	*ft_padding_right(char *src, char padding, int width);
 char	*ft_itoa(int n);
