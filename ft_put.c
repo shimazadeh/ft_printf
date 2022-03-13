@@ -6,11 +6,12 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 12:24:54 by shabibol          #+#    #+#             */
-/*   Updated: 2022/03/13 10:48:48 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/03/13 13:40:36 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft_printf.h"
+/*
 void	ft_pf_putchar_width(char c, int size)
 {
 	int	i;
@@ -24,7 +25,7 @@ void	ft_pf_putchar_width(char c, int size)
 		i++;
 	}
 }
-/*
+
 void	ft_pf_putchar(char c)
 {
 	write(1, &c, 1);
@@ -46,7 +47,7 @@ void	ft_pf_putstr(char *s)
 }
 
 void	ft_pf_putnbr(int n)
-{
+{EEEEE
 	long int	nbr;
 
 	nbr = n;
@@ -92,35 +93,59 @@ void	ft_pf_pointer(void *p)
 
 }
 */
+int	ft_get_digit_hex(int n)
+{
+	int	size;
+
+	size = 0;
+	while (n)
+	{
+		n /= 16;
+		size++;
+	}
+	return(size);
+}
+
 char	*ft_pf_nbr_hexlow(unsigned int nbr)
 {
-	char	*n;
-	int		i;
+	char	*result;
+	int		digit;
+	long int		num;
+	char	*ref;
 
-	i = ft_strlen(ft_itoa(nbr));
-	n = (char *)malloc(sizeof(char) * ft_strlen(ft_itoa(nbr)));
-	while (i >= 0)
+	ref = "0123456789abcdef";
+	num = nbr;
+	digit = ft_get_digit_hex(nbr);
+	if (nbr <= 0)
 	{
-		if (nbr >=16)
-			ft_pf_nbr_hexlow(nbr / 16);
-		if (nbr % 16 < 16 && nbr %  16 > 9)
-			n[i] = nbr % 16 + 87;
-		else
-			n[i] = nbr % 16 + '0';
-		i--;
+		num *= -1;
+		digit++;
 	}
-	return (n);
+	result = (char *)malloc(sizeof(char) * (digit + 1));
+	if (!result)
+		return (NULL);
+	while(digit--)
+	{
+		result[digit] = ref[num % 16];
+		num = num / 16;
+	}
+	if (nbr < 0)
+		result[0] = '-';
+	return (result);
 }
 
 #include <stdio.h>
 int	main(void)
 {
-	printf("the real answer for 4: %x\n", 4);
-	printf("the function answer for 4: %s\n", ft_pf_nbr_hexlow(4));
-	printf("the real answer for 44: %x\n", 44);
-	printf("the function answer for 44: %s\n", ft_pf_nbr_hexlow(44));
-	printf("the real answer for 654: %x\n", 654);
-	printf("the function answer for 654: %s\n", ft_pf_nbr_hexlow(654));
-	printf("the real answer for 7895: %x\n", 7895);
-	printf("the function answer for 7895: %s\n", ft_pf_nbr_hexlow(7895));
+	printf("the real result of 44 is: %010x\n", 44);
+/*	printf("the function result of 44 is: %s\n", ft_pf_nbr_hexlow(44));
+	printf("the real result of 44 is: %x\n", 456);
+	printf("the function result of 44 is: %s\n", ft_pf_nbr_hexlow(456));
+	printf("the real result of 44 is: %x\n", 7265);
+	printf("the function result of 44 is: %s\n", ft_pf_nbr_hexlow(7265));
+	printf("the real result of 44 is: %x\n", 87945);
+	printf("the function result of 44 is: %s\n", ft_pf_nbr_hexlow(87945));
+	printf("the real result of 44 is: %x\n", 100000);
+	printf("the function result of 44 is: %s\n", ft_pf_nbr_hexlow(100000));
+*/
 }

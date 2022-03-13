@@ -6,7 +6,7 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 18:39:46 by shabibol          #+#    #+#             */
-/*   Updated: 2022/03/13 10:48:46 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/03/13 13:56:08 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft_printf.h"
@@ -31,17 +31,22 @@ t_print	*ft_pf_EvalFlag(t_print *tab, const char c)
 }
 
 
-void	ft_printchar(t_print *tab)//relevant flags: dash (justification), dash makes 0 useless
+void	ft_printchar(t_print *tab)//relevant flags: dash. #/0/space/precision underdefined
 {
-	char	*c;
+	int		src;
+	char	*res;
 
-	if(tab->width && tab->zero && !tab->dash)
-		c = ft_padding_left(tab, '0');
-	if(tab->width && tab->dash)
-		c = ft_padding_left(tab, ' '); //left justified
-	else
-		c = va_arg(tab->arg, char);
-	ft_pf_putchar(c);
+	src = va_arg(tab->arg, int);
+	if(tab->width)
+	{
+		if(tab->dash)
+			res = ft_integer_padding_right(tab, src, ' ');
+		if(!tab->dash)
+			res = ft_integer_padding_left(tab, src, ' ');
+	}
+	if(!tab->width)
+		res = ft_itoa(src);
+	ft_pf_putstr(res);
 }
 
 void	ft_printstr(t_print *tab)//flags: 0, dash, precision & width. # & + & spaceignored when s is used
@@ -99,48 +104,31 @@ void	ft_printinteger(t_print *tab)//flags: dash, zero, space, sign //0 is ignore
 	ft_pf_putstr(res);
 }
 
-void	ft_printhex(t_print	*tab)//relevant flags:dash, zero, # 
+void	ft_printhex_low(t_print	*tab)//relevant flags:dash, zero, # 
 {
-	unsigned int	a;
-	int				size;
+	char			*res;
+	char			*src2;
+	char			*src;
 
-	a = va_arg(tab->arg, unsigned int);
-	size = ft_strlen(ft_itoa(a));
+	src = ft_pf_nbr_hexlow(va_arg(tab->arg, unsigned int));
+	if (tab->hashtag)
+		src2 = ft_str_multi_padding_left(tab, src, "0x");
 	if(tab->width)
 	{
-		if(!tab->dash && tab->hashtag && !tab->zero)
-		{
-			ft_pf_putchar_width(' ', ((tab->width) - ft_strlen(ft_itoa(a)) - 2));
-			ft_pf_putstr("0x");
-			ft_pf_putnbr_hexlow(a);
-		}
-		if(tab->dash && tab->hashtag)
-		{
-			ft_pf_putstr("0x");
-			ft_pf_putnbr_hexlow(a);
-			ft_pf_putchar_width(' ', ((tab->width) - ft_strlen(ft_itoa(a)) -2));
-		}
-		if(tab->zero && tab->hashtag)
-		{
-			ft_pf_putstr("0x");
-			ft_pf_putchar_width('0', ((tab->width) - ft_strlen(ft_itoa(a)) -2));
-			ft_pf_putnbr_hexlow(a);
-		}
-		if(tab->zero && !tab->hashtag)
-		{
-			ft_pf_putchar_width('0', ((tab->width) - ft_strlen(ft_itoa(a))));
-			ft_pf_putnbr_hexlow(a);
-		}
-		if(tab->dash && !tab->hashtag)
-		{
-			ft_pf_putchar_width(' ', ((tab->width) - ft_strlen(ft_itoa(a))));
-			ft_pf_putnbr_hexlow(a);
-		}
+		if(tab->hashtag && !tab->dash && !tab->zero)
+			res = ft_str_padding_left(tab, src2, ' ');
+		if(tab->hashtag && tab->dash)
+			res = ft_str_padding_right(tab, src2, ' ');
+		if(tab->hashtag && tab->zero)
+			res = ft_str_padding_bet0x(tab, src2, '0');
+		if(!tab->hashtag && tab->zero)
+			res = ft_str_padding_left(tab, src, '0');
+		if(!tab->hashtag && tab->dash)
+			res = ft_str_padding_left(tab, src, ' ');
 	}
-	if(!tab->width)
-	{
-		if (tab->hashtag)
-			ft_pf_putstr("0x");
-		ft_pf_putnbr_hexlow(a);
-	}
+	if(!tab->width && tab->hashtag)
+		res = src2;
+	if(!tab->width && !tab->hashtag)
+		res = src;
+	ft_pf_putstr(res);
 }

@@ -6,7 +6,7 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 21:15:51 by shabibol          #+#    #+#             */
-/*   Updated: 2022/03/13 10:42:22 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/03/13 13:56:41 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft_printf.h"
@@ -118,6 +118,63 @@ char	*ft_str_padding_betsign(t_print *tab, char *src, char padding)
 		src++;
 	}
 	while(padding && i != (width - ft_strlen(src)))
+	{
+		dest[i] = padding;
+		i++;
+	}
+	while(*src)
+	{
+		dest[i] = *src;
+		i++;
+		src++;
+	}
+	dest[i] = '\0';
+	return(dest);
+}
+
+char	*ft_str_multi_padding_left(t_print *tab, char *src, char *padding)
+{
+	char	*dest;
+	int		i;
+	int		width;
+
+	width = ft_strlen(src) + ft_strlen(padding);
+	i = 0;
+	dest = (char *)malloc(sizeof(char) *(width + 1));
+	if(!dest)
+		return(NULL);
+	while(padding[i])
+	{
+		dest[i] = padding[i];
+		i++;
+	}
+	while(*src)
+	{
+		dest[i] = *src;
+		i++;
+		src++;
+	}
+	dest[i] = '\0';
+	return(dest);
+}
+
+char	*ft_str_padding_bet0x(t_print *tab, char *src, char padding)
+{
+	char	*dest;
+	int		i;
+	int		width;
+
+	width = tab->width;
+	i = 2;
+	dest = (char *)malloc(sizeof(char) *(width + 1));
+	if(!dest)
+		return(NULL);
+	while(*src == '-' || *src == 'x' || *src == 'X')
+	{
+		dest[i++] = *src;
+		src++;
+	}
+	while(padding && i != (width - ft_strlen(src) + 2))
 	{
 		dest[i] = padding;
 		i++;
