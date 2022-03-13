@@ -6,7 +6,7 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 18:39:46 by shabibol          #+#    #+#             */
-/*   Updated: 2022/03/12 22:33:39 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/03/13 08:54:02 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft_printf.h"
@@ -30,7 +30,7 @@ t_print	*ft_pf_EvalFlag(t_print *tab, const char c)
 	return (tab);
 }
 
-/*
+
 void	ft_printchar(t_print *tab)//relevant flags: dash (justification), dash makes 0 useless
 {
 	char	*c;
@@ -44,23 +44,26 @@ void	ft_printchar(t_print *tab)//relevant flags: dash (justification), dash make
 	ft_pf_putchar(c);
 }
 
-void	ft_printstr(t_print *tab)//relevant flag: 0, dash, space. # & + ignored
+void	ft_printstr(t_print *tab)//flags: 0, dash, precision & width. # & + & spaceignored when s is used
 {
 	char	*src;
+	char	*res;
+	char	*src2;
 
 	src = va_arg(tab->arg, char *);
-	if(tab->width && !tab->zero && !tab->dash)
-		str = ft_str_padding_left(tab, src, ' ');
-	if(tab->width && tab->zero && !tab->dash)
-		str = ft_str_padding_left(tab, src, '0');
-	if(tab->width && tab->dash && !tab->sign)
-		str = ft_str_padding_right(tab, src, ' ');
-	if(tab->width && tab->dash && tab->space)
-		str = ft_str_padding_right(tab, src, ' ');
-	if(tab->width && !tab->dash && tab->space)
-		str = ft_str_padding_left(tab, src, ' ');
-	else //for when width doesnt exist
-	ft_pf_putstr(str);
+	src2 = ft_str_cut(tab, src);
+	if(tab->width)
+	{
+		if (!tab->zero && !tab->dash)
+			res = ft_str_padding_left(tab, src2, ' ');
+		if(tab->zero)
+			res = ft_str_padding_left(tab, src2, '0');
+		if(tab->dash)
+			res = ft_str_padding_right(tab, src2, ' ');
+	}
+	if(!tab->width)
+		res = src2;
+	ft_pf_putstr(res);
 }
 
 void	ft_printinteger(t_print *tab)//flags: dash, zero, space, sign //0 is ignored with dash
@@ -85,13 +88,14 @@ void	ft_printinteger(t_print *tab)//flags: dash, zero, space, sign //0 is ignore
 		if(tab->zero && (tab->space || tab->sign))
 			res = ft_str_padding_betsign(tab, src2, '0');
 		if(!tab->dash && !tab->zero && (tab->space || tab->sign))
-			res = ft_str_padding_right(tab, src2, ' ');
-		}
-	if(!tab->width)
-	{
-		if (tab->sign || tab->space)
-			res = src2;
+			res = ft_str_padding_left(tab, src2, ' ');
+		if(!tab->dash && !tab->zero && !tab->space && !tab->sign)
+			res = ft_integer_padding_left(tab, src, ' ');
 	}
+	if(!tab->width && (tab->sign || tab->space))
+		res = src2;
+	if(!tab->width && !tab->sign && !tab->space)
+		res = ft_itoa(src);
 	ft_pf_putstr(res);
 }
 
@@ -117,4 +121,4 @@ void	ft_printhex(t_print *tab)
 	a = va_arg(tab->arg, unsigned int);
 
 }
-*/
+

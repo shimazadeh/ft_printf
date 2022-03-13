@@ -6,7 +6,7 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 12:24:54 by shabibol          #+#    #+#             */
-/*   Updated: 2022/03/12 22:31:36 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/03/13 08:54:05 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,5 +82,5 @@ void	ft_pf_pointer(void *p)
 #include <stdio.h>
 int	main(void)
 {
-	printf("%+d", 44);
+	printf("%-0.1s", "Shima");
 }

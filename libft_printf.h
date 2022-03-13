@@ -6,7 +6,7 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 17:35:02 by shabibol          #+#    #+#             */
-/*   Updated: 2022/03/12 20:18:25 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/03/13 07:42:36 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,15 @@ typedef	struct s_print
 	va_list	arg; //argument to print out
 	int	width; //
 	int	precision; //
-	int	len; //lenght to be printed
 	int	zero; //padding with zero only used for numbers
 	int	dash; //- it left justifies
 	int	pnt; //number of digits to be displayed
 	int	hashtag; //add 0x before when used with x X. d/s/c is ignored
 	int	space; //insert a space before. when used with + ignore
 	int	sign; // pos or neg number
-	int	is_zero; //if it is number zero
 	int	perc; // if it is %
+	int	prec_flag;//flag for if precision exist
+	int	width_flag;//flag for if width exist
 }t_print;
 
 int	ft_isdigit(int c);
