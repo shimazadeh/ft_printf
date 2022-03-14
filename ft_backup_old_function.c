@@ -6,7 +6,7 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 14:31:33 by shabibol          #+#    #+#             */
-/*   Updated: 2022/03/14 15:00:49 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/03/14 19:19:04 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdlib.h>
@@ -164,3 +164,41 @@ char	*ft_int_add_sign(int d)
 		str = ft_itoa(d);
 	return(str);
 }
+
+
+void	ft_printinteger(t_print *tab)//flags: dash, zero, space, sign //0 is ignored with dash
+{
+	char	*res;
+	int		src;
+	char	*src2;
+
+	src = va_arg(tab->arg, int);
+	if(tab->space)
+		src2 = ft_int_add_char(src, ' ');
+	if (tab->sign)
+		src2 = ft_int_add_char(src, '+');
+	if(tab->width)
+	{
+		if(tab->dash && (tab->space || tab->sign))
+			res = ft_str_padding(tab, src2, ' ', ft_strlen(src2));//pad to the right
+		if(tab->dash && !tab->space && !tab->sign)
+			res = ft_integer_padding(tab, src, ' ', 2);//pad to the right
+		if(tab->zero && !tab->space && !tab->sign)
+			res = ft_integer_padding(tab, src, '0', 1);//pad between the sign and num
+		if(tab->zero && (tab->space || tab->sign))
+			res = ft_str_padding(tab, src2, '0', 1);//pad after the first char which is the sign
+		if(!tab->dash && !tab->zero && (tab->space || tab->sign))
+			res = ft_str_padding(tab, src2, ' ', 0);//pad to the left
+		if(!tab->dash && !tab->zero && !tab->space && !tab->sign)
+			res = ft_integer_padding(tab, src, ' ', 0);//pad to the left
+	}
+	if(!tab->width && (tab->sign || tab->space))
+		res = src2;
+	if(!tab->width && !tab->sign && !tab->space)
+		res = ft_itoa(src);
+	ft_pf_putstr(res);
+}
+
+
+
+

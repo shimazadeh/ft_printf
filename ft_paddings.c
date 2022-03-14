@@ -6,7 +6,7 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 21:15:51 by shabibol          #+#    #+#             */
-/*   Updated: 2022/03/14 17:34:55 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/03/14 19:22:12 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft_printf.h"
@@ -20,7 +20,7 @@ char	*ft_str_cut(t_print *tab, char *str)//cutes the string with respect to prec
 	size = ft_strlen(str);
 	if(tab->prec_flag == 1 && tab->precision == 0)//meaning there is a dot but no numb
 		return (NULL);
-	if (tab->prec_flag == 1 && tab->precision > 0)// there is a dot and numb
+	if (tab->prec_flag == 1 && tab->precision != 0)// there is a dot and numb
 	{
 		if ((tab->precision) < size)
 			size = tab->precision;
@@ -28,9 +28,9 @@ char	*ft_str_cut(t_print *tab, char *str)//cutes the string with respect to prec
 	dest = (char *)malloc(sizeof(char) * (size + 1));
 	if (!dest)
 		return (NULL);
-	while(str[size])
+	while(str[size - 1])
 	{
-		dest[size] = str[size];
+		dest[size - 1] = str[size - 1];
 		size--;
 	}
 	return (dest);
@@ -143,10 +143,11 @@ int	main(int ac, char **av)
 	tab = (t_print *)malloc(sizeof(t_print));
 	ft_initialize_flags(tab);
 	tab->width = 10;
-	tab->precision = 5;
+	tab->precision = 0;
 	tab->prec_flag = 1;
-	printf("the value of precision is:%d and flag is: %d\n", tab->precision, tab->prec_flag);
-	printf("cutting based on precision test:%s\n", ft_str_cut(tab, "SHIMA"));
+//	printf("the value of precision is:%d and flag is: %d\n", tab->precision, tab->prec_flag);
+//	printf("cutting based on precision test:%s\n", ft_str_cut(tab, "SHIMA"));
+	printf("test:%u\n", 23);
 
 /*	printf("multipadding test: %s\n", ft_str_multi_padding_left(tab, "1234", "0x"));
 	printf("multipadding test: %s\n", ft_str_multi_padding_left(tab, "1", "0x"));
