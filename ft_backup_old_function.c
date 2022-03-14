@@ -6,7 +6,7 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 14:31:33 by shabibol          #+#    #+#             */
-/*   Updated: 2022/03/14 19:19:04 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/03/14 19:37:14 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdlib.h>
@@ -199,6 +199,19 @@ void	ft_printinteger(t_print *tab)//flags: dash, zero, space, sign //0 is ignore
 	ft_pf_putstr(res);
 }
 
+char	*ft_integer_padding(t_print *tab, int s, char padding, int flag)//pad a character to the int depending on the flag
+{
+	char	*dest;
+	char	*src;
 
+	src = ft_itoa(s);
+	if (flag == 1)//between the first char and the number
+		dest = ft_str_padding(tab, src, padding, 1);
+	if (flag == 0)//to the left of the number
+		dest = ft_str_padding(tab, src, padding, 0);
+	if (flag == 2)//to the right of the number
+		dest = ft_str_padding(tab, src, padding, ft_strlen(src));
+	return (dest);
+}
 
 

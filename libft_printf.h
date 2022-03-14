@@ -6,7 +6,7 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 17:35:02 by shabibol          #+#    #+#             */
-/*   Updated: 2022/03/14 18:15:01 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/03/14 19:55:43 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef	struct s_print
 
 int	ft_isdigit(int c);
 int	ft_get_digits_hex(int c);
-int	ft_get_digits(int c);
+int	ft_get_digits(long int c);
 int	ft_atoi(const char *str);
 int	ft_str_count(const char *str);
 int	ft_eval_format(t_print *tab, const char *str);
@@ -43,13 +43,13 @@ int	ft_strchr_boolean(char c, char *str);
 int	ft_strlen(char *str);
 int	ft_printf(const char* str, ...);
 
-char	*ft_itoa(int d);
-char	*ft_itoa_sign(int d);
+char	*ft_itoa(long int d);
+char	*ft_itoa_sign(long int d);
 char	*ft_str_cut(t_print *tab, char *str);
 char	*ft_str_multi_padding_left(t_print *tab, char *src, char *padding);
 char	*ft_str_padding(t_print *tab, char *src, char padding, int start);
 char	*ft_integer_padding(t_print *tab, int s, char padding, int flag);
-char	*ft_int_add_char(int d, char c);
+char	*ft_int_add_char(long int d, char c);
 char	*ft_pf_nbr_hexlow(unsigned int nbr);
 char	*ft_pf_nbr_hexup(unsigned int nbr);
 

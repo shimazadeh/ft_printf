@@ -6,7 +6,7 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 15:21:43 by shabibol          #+#    #+#             */
-/*   Updated: 2022/03/14 19:23:05 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/03/14 19:59:21 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,9 +81,9 @@ void	ft_printinteger(t_print *tab)//flags: dash, zero, space, sign //0 is ignore
 
 void	ft_printdecimal(t_print *tab)//flags: dash, zero, space, sign //0 is ignored with dash
 {
-	char	*res;
-	int		src;
-	char	*src2;
+	char				*res;
+	unsigned int		src;
+	char				*src2;
 
 	src = va_arg(tab->arg, unsigned int);
 	if (tab->space)
@@ -105,6 +105,7 @@ void	ft_printdecimal(t_print *tab)//flags: dash, zero, space, sign //0 is ignore
 		res = src2;
 	ft_pf_putstr(res);
 }
+
 void	ft_printhex_low(t_print	*tab)//relevant flags:dash, zero, # 
 {
 	char			*res;

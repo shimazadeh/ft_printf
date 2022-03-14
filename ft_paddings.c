@@ -6,7 +6,7 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 21:15:51 by shabibol          #+#    #+#             */
-/*   Updated: 2022/03/14 19:22:12 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/03/14 19:59:19 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft_printf.h"
@@ -93,22 +93,7 @@ char	*ft_str_padding(t_print *tab, char *src, char padding, int start)//start is
 	return(dest);
 }
 
-char	*ft_integer_padding(t_print *tab, int s, char padding, int flag)//pad a character to the int depending on the flag 
-{
-	char	*dest;
-	char	*src;
-
-	src = ft_itoa(s);
-	if (flag == 1)//between the first char and the number
-		dest = ft_str_padding(tab, src, padding, 1);
-	if (flag == 0)//to the left of the number
-		dest = ft_str_padding(tab, src, padding, 0);
-	if (flag == 2)//to the right of the number
-		dest = ft_str_padding(tab, src, padding, ft_strlen(src));
-	return (dest);
-}
-
-char	*ft_int_add_char(int d, char c)
+char	*ft_int_add_char(long int d, char c)
 {
 	int		i;
 	char	*dest;
