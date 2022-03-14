@@ -6,21 +6,11 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 21:15:51 by shabibol          #+#    #+#             */
-/*   Updated: 2022/03/13 13:56:41 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/03/14 17:34:55 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft_printf.h"
 #include <stdio.h>
-
-int	ft_strlen(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i] != '\0')
-		i++;
-	return (i);
-}
 
 char	*ft_str_cut(t_print *tab, char *str)//cutes the string with respect to precision
 {
@@ -29,11 +19,8 @@ char	*ft_str_cut(t_print *tab, char *str)//cutes the string with respect to prec
 
 	size = ft_strlen(str);
 	if(tab->prec_flag == 1 && tab->precision == 0)//meaning there is a dot but no numb
-	{
-		size = 0;
 		return (NULL);
-	}
-	else if (tab->prec_flag == 1 && tab->precision == 1)// there is a dot and numb
+	if (tab->prec_flag == 1 && tab->precision > 0)// there is a dot and numb
 	{
 		if ((tab->precision) < size)
 			size = tab->precision;
@@ -49,59 +36,33 @@ char	*ft_str_cut(t_print *tab, char *str)//cutes the string with respect to prec
 	return (dest);
 }
 
-
-char	*ft_str_padding_right(t_print *tab, char *src, char padding)//pad a character to the right of the string
+char	*ft_str_multi_padding_left(t_print *tab, char *src, char *padding)
 {
 	char	*dest;
 	int		i;
 	int		width;
 
+	width = ft_strlen(src) + ft_strlen(padding);
 	i = 0;
-	width = tab->width;
-	dest = (char *)malloc(sizeof(char) * (width + 1));
-	if (!dest)
-		return (NULL);
-	while (src[i])
+	dest = (char *)malloc(sizeof(char) *(width + 1));
+	if(!dest || !padding)
+		return(NULL);
+	while(padding[i])
 	{
-		dest[i] = src[i];
+		dest[i] = padding[i];
 		i++;
 	}
-	while (padding && i != width)
-	{
-		dest[i] = padding;
-		i++;
-	}
-	dest[i] = '\0';
-	return (dest);
-}
-
-char	*ft_str_padding_left(t_print *tab, char *src, char padding)//pad a character tp the left of the string
-{
-	char	*dest;
-	int		i;
-	int		width;
-
-	i = 0;
-	width = tab->width;
-	dest = (char *)malloc(sizeof(char) * (width + 1));
-	if (!dest)
-		return (NULL);
-	while (padding && i != (width-ft_strlen(src)))
-	{
-		dest[i] = padding;
-		i++;
-	}
-	while (*src)
+	while(*src)
 	{
 		dest[i] = *src;
 		i++;
 		src++;
 	}
 	dest[i] = '\0';
-	return (dest);
+	return(dest);
 }
 
-char	*ft_str_padding_betsign(t_print *tab, char *src, char padding)
+char	*ft_str_padding(t_print *tab, char *src, char padding, int start)//start is the starting position to padd. 0 means before the string , 1 mean after the first character
 {
 	char	*dest;
 	int		i;
@@ -112,7 +73,7 @@ char	*ft_str_padding_betsign(t_print *tab, char *src, char padding)
 	dest = (char *)malloc(sizeof(char) *(width + 1));
 	if(!dest)
 		return(NULL);
-	if(*src == '-' || *src == '+' || *src == ' ')
+	while(*src && i != start)
 	{
 		dest[i++] = *src;
 		src++;
@@ -132,103 +93,20 @@ char	*ft_str_padding_betsign(t_print *tab, char *src, char padding)
 	return(dest);
 }
 
-char	*ft_str_multi_padding_left(t_print *tab, char *src, char *padding)
-{
-	char	*dest;
-	int		i;
-	int		width;
-
-	width = ft_strlen(src) + ft_strlen(padding);
-	i = 0;
-	dest = (char *)malloc(sizeof(char) *(width + 1));
-	if(!dest)
-		return(NULL);
-	while(padding[i])
-	{
-		dest[i] = padding[i];
-		i++;
-	}
-	while(*src)
-	{
-		dest[i] = *src;
-		i++;
-		src++;
-	}
-	dest[i] = '\0';
-	return(dest);
-}
-
-char	*ft_str_padding_bet0x(t_print *tab, char *src, char padding)
-{
-	char	*dest;
-	int		i;
-	int		width;
-
-	width = tab->width;
-	i = 2;
-	dest = (char *)malloc(sizeof(char) *(width + 1));
-	if(!dest)
-		return(NULL);
-	while(*src == '-' || *src == 'x' || *src == 'X')
-	{
-		dest[i++] = *src;
-		src++;
-	}
-	while(padding && i != (width - ft_strlen(src) + 2))
-	{
-		dest[i] = padding;
-		i++;
-	}
-	while(*src)
-	{
-		dest[i] = *src;
-		i++;
-		src++;
-	}
-	dest[i] = '\0';
-	return(dest);
-}
-
-char	*ft_integer_padding_betsign(t_print *tab, int s, char padding)//pad a character in between the sign and the number
+char	*ft_integer_padding(t_print *tab, int s, char padding, int flag)//pad a character to the int depending on the flag 
 {
 	char	*dest;
 	char	*src;
 
 	src = ft_itoa(s);
-	dest = ft_str_padding_betsign(tab, src, padding);
+	if (flag == 1)//between the first char and the number
+		dest = ft_str_padding(tab, src, padding, 1);
+	if (flag == 0)//to the left of the number
+		dest = ft_str_padding(tab, src, padding, 0);
+	if (flag == 2)//to the right of the number
+		dest = ft_str_padding(tab, src, padding, ft_strlen(src));
 	return (dest);
 }
-
-char	*ft_integer_padding_left(t_print *tab, int s, char padding)//pads a character to the left of the number
-{
-	char	*dest;
-	char	*src;
-
-	src = ft_itoa(s);
-	dest = ft_str_padding_left(tab, src, padding);
-	return (dest);
-}
-
-char	*ft_integer_padding_right(t_print *tab, int s, char padding)//pads a character to the right of the number
-{
-	char	*dest;
-	char	*src;
-
-	src = ft_itoa(s);
-	dest = ft_str_padding_right(tab, src, padding);
-	return (dest);
-}
-
-/*char	*ft_int_add_sign(int d)
-{
-	char	*str;
-
-	if (d >= 0)
-		str = ft_itoa_sign(d);
-	else
-		str = ft_itoa(d);
-	return(str);
-}*/
 
 char	*ft_int_add_char(int d, char c)
 {
@@ -238,7 +116,7 @@ char	*ft_int_add_char(int d, char c)
 
 	i = 1;
 	src = ft_itoa(d);
-	if (d < 0)
+	if (!c || d < 0)
 	{
 		dest = ft_itoa(d);
 		return (dest);
@@ -247,12 +125,56 @@ char	*ft_int_add_char(int d, char c)
 	{
 		dest = (char *)malloc(sizeof(char) * (ft_strlen(src) + 2));
 		dest[0] = c;
-		while(src[i])
+		while(*src)
 		{
-			dest[i] = src[i];
+			dest[i] = *src;
 			i++;
+			src++;
 		}
 		dest[i] = '\0';
 	}
 	return (dest);
+}
+
+int	main(int ac, char **av)
+{
+	t_print	*tab;
+
+	tab = (t_print *)malloc(sizeof(t_print));
+	ft_initialize_flags(tab);
+	tab->width = 10;
+	tab->precision = 5;
+	tab->prec_flag = 1;
+	printf("the value of precision is:%d and flag is: %d\n", tab->precision, tab->prec_flag);
+	printf("cutting based on precision test:%s\n", ft_str_cut(tab, "SHIMA"));
+
+/*	printf("multipadding test: %s\n", ft_str_multi_padding_left(tab, "1234", "0x"));
+	printf("multipadding test: %s\n", ft_str_multi_padding_left(tab, "1", "0x"));
+	printf("multipadding test: %s\n", ft_str_multi_padding_left(tab, "-1234", "0x"));
+	printf("multipadding test: %s\n", ft_str_multi_padding_left(tab, " 1234", "0"));
+	printf("addchar test: %s\n", ft_int_add_char(-1234, '+'));
+	printf("addchar test: %s\n", ft_int_add_char(-1234, '-'));
+	printf("addchar test: %s\n", ft_int_add_char(-1234, ' '));
+	printf("addchar test: %s\n", ft_int_add_char(-1234, '\0'));
+
+	printf("test1 :%s\n", ft_str_padding(tab, "SHIMA", '0', 0));
+	printf("test2 :%s\n", ft_str_padding(tab, "SHIMA", '0', 1));
+	printf("test3 :%s\n", ft_str_padding(tab, "SHIMA", '0', 2));
+	printf("test4 :%s\n", ft_str_padding(tab, "SHIMA", '0', 3));
+	printf("test5 :%s\n", ft_str_padding(tab, "SHIMA", '0', 4));
+	printf("test6 :%s\n", ft_str_padding(tab, "SHIMA", '0', 5));
+	printf("test6 :%s\n", ft_str_padding(tab, "", '0', 5));
+
+	printf("test6 :%s\n", ft_integer_padding(tab, 1234, '0', 0));
+	printf("test6 :%s\n", ft_integer_padding(tab, 1234, '0', 1));
+	printf("test6 :%s\n", ft_integer_padding(tab, 1234, '0', 2));
+	
+	printf("test6 :%s\n", ft_integer_padding(tab, 1 , '0', 0));
+	printf("test6 :%s\n", ft_integer_padding(tab, 1 , '0', 1));
+	printf("test6 :%s\n", ft_integer_padding(tab, 1 , '0', 2));
+
+	printf("test6 :%s\n", ft_integer_padding(tab, -1234, '0', 0));
+	printf("test6 :%s\n", ft_integer_padding(tab, -1234, '0', 1));
+	printf("test6 :%s\n", ft_integer_padding(tab, -1234, '0', 2));
+*/
 }

@@ -6,17 +6,10 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 20:11:37 by shabibol          #+#    #+#             */
-/*   Updated: 2022/03/12 23:01:50 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/03/14 15:39:47 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft_printf.h"
-
-int	ft_isdigit(int c)
-{
-	if (c >= '1' && c <= '9')
-		return (1);
-	return (0);
-}
 
 int	ft_strchr_boolean(char c, char *str)
 {
@@ -55,9 +48,9 @@ int	ft_atoi(const char *str)
 	return (result * sign);
 }
 
-size_t	ft_get_digits(int n)
+int	ft_get_digits(int n)
 {
-	size_t	size;
+	int	size;
 
 	size = 0;
 	while (n)

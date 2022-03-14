@@ -6,7 +6,7 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 17:35:02 by shabibol          #+#    #+#             */
-/*   Updated: 2022/03/13 10:47:50 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/03/14 15:53:30 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,27 +34,42 @@ typedef	struct s_print
 }t_print;
 
 int	ft_isdigit(int c);
+int	ft_get_digits_hex(int c);
+int	ft_get_digits(int c);
 int	ft_atoi(const char *str);
 int	ft_str_count(const char *str);
 int	ft_eval_format(t_print *tab, const char *str);
 int	ft_strchr_boolean(char c, char *str);
 int	ft_strlen(char *str);
-
+int	ft_printf(const char* str, ...);
 
 char	*ft_itoa(int d);
-char	*ft_padding_left(char *src, char padding, int width);
-char	*ft_padding_right(char *src, char padding, int width);
-char	*ft_itoa(int n);
+char	*ft_itoa_sign(int d);
+char	*ft_str_cut(t_print *tab, char *str);
+char	*ft_str_multi_padding_left(t_print *tab, char *src, char *padding);
+char	*ft_str_padding(t_print *tab, char *src, char padding, int start);
+char	*ft_integer_padding(t_print *tab, int s, char padding, int flag);
+char	*ft_int_add_char(int d, char c);
+char	*ft_pf_nbr_hexlow(unsigned int nbr);
+char	*ft_pf_nbr_hexup(unsigned int nbr);
 
 t_print	*ft_pf_EvalFlag(t_print *tab, const char c);
-const char	*ft_width_precision(t_print *tab, const char *str, int flag);
-void	ft_update_tab(t_print *tab, const char *str);
 t_print	*ft_initialize_flags(t_print *tab);
+
+const char	*ft_width_precision(t_print *tab, const char *str, int flag);
+
+void	ft_update_tab(t_print *tab, const char *str);
+void	ft_pf_putchar_width(char c, int size);
+
+void	ft_printchar(t_print *tab);
+void	ft_printstr(t_print *tab);
+void	ft_printinteger(t_print *tab);
+void	ft_printhex_low(t_print *tab);
+void	ft_printhex_up(t_print *tab);
 
 void	ft_pf_putchar(char c);
 void	ft_pf_putstr(char *s);
-void	ft_pf_putnbr_signed(int n);
-void	ft_pf_putnbr_unsigned(int n);
+void	ft_pf_putnbr(int n);
 void	ft_pf_putnbr_u(unsigned int n);
 void	ft_pf_putnbr_hexup(unsigned int nbr);
 void	ft_pf_putnbr_hexlow(unsigned int nbr);

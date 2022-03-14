@@ -6,16 +6,29 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 18:46:47 by shabibol          #+#    #+#             */
-/*   Updated: 2022/03/13 10:47:13 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/03/14 15:10:35 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft_printf.h"
-int	ft_isdigit(int c)
+
+t_print	*ft_pf_EvalFlag(t_print *tab, const char c)
 {
-	if (c >= '1' && c <= '9')
-		return (1);
-	return (0);
+	if (c == '-')//left justified
+		tab->dash = 1;
+	if (c == '.')
+		tab->pnt = 1;
+	if (c == '#')//
+		tab->hashtag = 1;
+	if (c == ' ')//padd with space
+		tab->space = 1;
+	if (c == '%')//print %
+		tab->perc = 1;
+	if (c == '+')//prefix the integer with its sign
+		tab->sign = 1;
+	if (c == '0')//padd with zero
+		tab->zero = 1;
+	return (tab);
 }
 
 int	ft_str_count(const char *str)
@@ -111,22 +124,3 @@ int	main(int ac, char **av)
 	printf("the answer is	%s", "shima");
 }
 */
-int	ft_eval_format(t_print *tab, const char *str)//to evaluate format
-{
-	ft_update_tab(tab, str);
-	if (*str == 'd' || *str == 'i')
-		ft_printinteger(tab);
-	if (*str == 'c')
-		ft_printchar(tab);
-	if (*str == 's')
-		ft_printstr(tab);
-	if (*str == 'u')
-		ft_pringdecimal(tab);
-	if (*str == 'x')
-		ft_printhex(tab);
-	if (*str == 'X')
-		ft_printhex(tab);
-	if (*str == 'p')
-//		(unsigned long)va_arg(arg, void *)
-	return (i);
-}
