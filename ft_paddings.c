@@ -6,11 +6,10 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 21:15:51 by shabibol          #+#    #+#             */
-/*   Updated: 2022/03/14 19:59:19 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/03/15 17:26:08 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft_printf.h"
-#include <stdio.h>
 
 char	*ft_str_cut(t_print *tab, char *str)//cutes the string with respect to precision
 {
@@ -18,9 +17,9 @@ char	*ft_str_cut(t_print *tab, char *str)//cutes the string with respect to prec
 	int		size;
 
 	size = ft_strlen(str);
-	if(tab->prec_flag == 1 && tab->precision == 0)//meaning there is a dot but no numb
+	if(tab->pnt== 1 && tab->precision == 0)//meaning there is a dot but no numb
 		return (NULL);
-	if (tab->prec_flag == 1 && tab->precision != 0)// there is a dot and numb
+	if (tab->pnt == 1 && tab->precision != 0)// there is a dot and numb
 	{
 		if ((tab->precision) < size)
 			size = tab->precision;
@@ -36,7 +35,7 @@ char	*ft_str_cut(t_print *tab, char *str)//cutes the string with respect to prec
 	return (dest);
 }
 
-char	*ft_str_multi_padding_left(t_print *tab, char *src, char *padding)
+char	*ft_str_multi_padding_left(char *src, char *padding)
 {
 	char	*dest;
 	int		i;
@@ -93,7 +92,7 @@ char	*ft_str_padding(t_print *tab, char *src, char padding, int start)//start is
 	return(dest);
 }
 
-char	*ft_int_add_char(long int d, char c)
+char	*ft_int_add_char(long long int d, char c)
 {
 	int		i;
 	char	*dest;
@@ -120,7 +119,7 @@ char	*ft_int_add_char(long int d, char c)
 	}
 	return (dest);
 }
-
+/*
 int	main(int ac, char **av)
 {
 	t_print	*tab;
@@ -134,7 +133,7 @@ int	main(int ac, char **av)
 //	printf("cutting based on precision test:%s\n", ft_str_cut(tab, "SHIMA"));
 	printf("test:%u\n", 23);
 
-/*	printf("multipadding test: %s\n", ft_str_multi_padding_left(tab, "1234", "0x"));
+	printf("multipadding test: %s\n", ft_str_multi_padding_left(tab, "1234", "0x"));
 	printf("multipadding test: %s\n", ft_str_multi_padding_left(tab, "1", "0x"));
 	printf("multipadding test: %s\n", ft_str_multi_padding_left(tab, "-1234", "0x"));
 	printf("multipadding test: %s\n", ft_str_multi_padding_left(tab, " 1234", "0"));
@@ -162,5 +161,5 @@ int	main(int ac, char **av)
 	printf("test6 :%s\n", ft_integer_padding(tab, -1234, '0', 0));
 	printf("test6 :%s\n", ft_integer_padding(tab, -1234, '0', 1));
 	printf("test6 :%s\n", ft_integer_padding(tab, -1234, '0', 2));
-*/
-}
+
+}*/

@@ -6,7 +6,7 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 14:31:33 by shabibol          #+#    #+#             */
-/*   Updated: 2022/03/14 19:37:14 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/03/15 16:20:16 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdlib.h>
@@ -214,4 +214,45 @@ char	*ft_integer_padding(t_print *tab, int s, char padding, int flag)//pad a cha
 	return (dest);
 }
 
+void	ft_pf_putnbr(int n)
+{
+	long int	nbr;
 
+	nbr = n;
+	if (nbr < 0)
+	{
+		ft_pf_putchar('-');
+		nbr = nbr + 1;
+	}
+	if (nbr >= 10)
+		ft_pf_putnbr(nbr / 10);
+	ft_pf_putchar(nbr % 10 + '0');
+}
+
+void	ft_pf_putnbr_u(unsigned int n)
+{
+	if (n >= 10)
+		ft_pf_putnbr_u(n / 10);
+	ft_pf_putchar(n % 10 + '0');
+}
+
+
+void	ft_pf_putnbr_hexup(unsigned int nbr)
+{
+	if (nbr >= 16)
+		ft_pf_putnbr_hexup(nbr / 16);
+	if (nbr % 16 < 16 && nbr % 16 > 9)
+		ft_pf_putchar(nbr % 16 + 55);
+	else
+		ft_pf_putchar(nbr % 16 + '0');
+}
+
+void	ft_pf_putnbr_hexlow(unsigned int nbr)
+{
+	if (nbr >= 16)
+		ft_pf_putnbr_hexlow(nbr / 16);
+	if (nbr % 16 < 16 && nbr % 16 > 9)
+		ft_pf_putchar(nbr % 16 + 87);
+	else
+		ft_pf_putchar(nbr % 16 + '0');
+}

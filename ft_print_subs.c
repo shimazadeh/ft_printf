@@ -6,31 +6,31 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 15:21:43 by shabibol          #+#    #+#             */
-/*   Updated: 2022/03/14 19:59:21 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/03/15 18:36:33 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft_printf.h"
 
-void	ft_printchar(t_print *tab)//relevant flags: dash. #/0/space/precision underdefined
+int	ft_printchar(t_print *tab)//relevant flags: dash. #/0/space/precision underdefined
 {
-	int		src;
+	char	*src;
 	char	*res;
 
-	src = va_arg(tab->arg, int);
+	src = va_arg(tab->arg, char*);
 	if(tab->width)
 	{
 		if(tab->dash)
-			res = ft_integer_padding(tab, src, ' ', 2);//pad space to the right
+			res = ft_str_padding(tab, src, ' ', 1);//pad space to the right
 		if(!tab->dash)
-			res = ft_integer_padding(tab, src, ' ', 0);//pad space to the left
+			res = ft_str_padding(tab, src, ' ', 0);//pad space to the left
 	}
 	if(!tab->width)
-		res = ft_itoa(src);
-	ft_pf_putstr(res);
+		res = src;
+	return (ft_pf_putstr(res));
 }
 
-void	ft_printstr(t_print *tab)//flags: 0, dash, precision & width. # & + & spaceignored when s is used
+int	ft_printstr(t_print *tab)//flags: 0, dash, precision & width. # & + & spaceignored when s is used
 {
 	char	*src;
 	char	*res;
@@ -49,10 +49,10 @@ void	ft_printstr(t_print *tab)//flags: 0, dash, precision & width. # & + & space
 	}
 	if(!tab->width)
 		res = src2;
-	ft_pf_putstr(res);
+	return (ft_pf_putstr(res));
 }
 
-void	ft_printinteger(t_print *tab)//flags: dash, zero, space, sign //0 is ignored with dash
+int	ft_printinteger(t_print *tab)//flags: dash, zero, space, sign //0 is ignored with dash
 {
 	char	*res;
 	int		src;
@@ -76,10 +76,10 @@ void	ft_printinteger(t_print *tab)//flags: dash, zero, space, sign //0 is ignore
 	}
 	if(!tab->width)
 		res = src2;
-	ft_pf_putstr(res);
+	return (ft_pf_putstr(res));
 }
 
-void	ft_printdecimal(t_print *tab)//flags: dash, zero, space, sign //0 is ignored with dash
+int	ft_printdecimal(t_print *tab)//flags: dash, zero, space, sign //0 is ignored with dash
 {
 	char				*res;
 	unsigned int		src;
@@ -103,10 +103,10 @@ void	ft_printdecimal(t_print *tab)//flags: dash, zero, space, sign //0 is ignore
 	}
 	if(!tab->width)
 		res = src2;
-	ft_pf_putstr(res);
+	return (ft_pf_putstr(res));
 }
 
-void	ft_printhex_low(t_print	*tab)//relevant flags:dash, zero, # 
+int	ft_printhex_low(t_print	*tab)//relevant flags:dash, zero, # 
 {
 	char			*res;
 	char			*src2;
@@ -114,7 +114,7 @@ void	ft_printhex_low(t_print	*tab)//relevant flags:dash, zero, #
 
 	src = ft_pf_nbr_hexlow(va_arg(tab->arg, unsigned int));
 	if (tab->hashtag)
-		src2 = ft_str_multi_padding_left(tab, src, "0x");
+		src2 = ft_str_multi_padding_left(src, "0x");
 	if(tab->width)
 	{
 		if(tab->hashtag && !tab->dash && !tab->zero)
@@ -132,10 +132,10 @@ void	ft_printhex_low(t_print	*tab)//relevant flags:dash, zero, #
 		res = src2;
 	if(!tab->width && !tab->hashtag)
 		res = src;
-	ft_pf_putstr(res);
+	return (ft_pf_putstr(res));
 }
 
-void	ft_printhex_up(t_print	*tab)//relevant flags:dash, zero, #
+int	ft_printhex_up(t_print	*tab)//relevant flags:dash, zero, #
 {
 	char			*res;
 	char			*src2;
@@ -143,7 +143,7 @@ void	ft_printhex_up(t_print	*tab)//relevant flags:dash, zero, #
 
 	src = ft_pf_nbr_hexup(va_arg(tab->arg, unsigned int));
 	if (tab->hashtag)
-		src2 = ft_str_multi_padding_left(tab, src, "0X");
+		src2 = ft_str_multi_padding_left(src, "0X");
 	if(tab->width)
 	{
 		if(tab->hashtag && !tab->dash && !tab->zero)
@@ -161,5 +161,5 @@ void	ft_printhex_up(t_print	*tab)//relevant flags:dash, zero, #
 		res = src2;
 	if(!tab->width && !tab->hashtag)
 		res = src;
-	ft_pf_putstr(res);
+	return (ft_pf_putstr(res));
 }

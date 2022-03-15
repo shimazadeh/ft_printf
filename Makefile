@@ -6,18 +6,15 @@
 #    By: shabibol <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/14 15:55:59 by shabibol          #+#    #+#              #
-#    Updated: 2022/03/14 16:11:31 by shabibol         ###   ########.fr        #
+#    Updated: 2022/03/15 18:36:59 by shabibol         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libft.a
+NAME = libft_printf.a
 
-SRCS = 
-
-SRCS_BONUS = 
+SRCS = ft_base_function.c ft_base_function_partII.c ft_paddings.c ft_parsing.c ft_print_subs.c ft_printf.c ft_put.c 
 
 OBJS = $(SRCS:%.c=%.o)
-OBJ_BONUS = $(SRCS_BONUS:%.c=%.o)
 FLAGS = -Wall -Wextra -Werror
 
 $(NAME): $(OBJS)
@@ -26,13 +23,10 @@ $(NAME): $(OBJS)
 $(OBJS): $(SRCS)
 	gcc $(FLAGS) -c $(SRCS)
 
-$(OBJ_BONUS): $(SRCS_BONUS) $(SRCS)
-	gcc $(FLAGS) -c $(SRCS_BONUS) $(SRCS)
-
 all:: $(NAME)
 
-bonus: $(OBJS_BONUS) $(OBJS)
-	ar rc $(NAME) $(OBJS) $(OBJS_BONUS)
+bonus: $(OBJS)
+	ar rc $(NAME) $(OBJS)
 
 clean:
 	rm -f *.o

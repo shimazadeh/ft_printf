@@ -6,7 +6,7 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 17:35:02 by shabibol          #+#    #+#             */
-/*   Updated: 2022/03/14 19:55:43 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/03/15 18:29:52 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,13 @@ int	ft_strchr_boolean(char c, char *str);
 int	ft_strlen(char *str);
 int	ft_printf(const char* str, ...);
 
-char	*ft_itoa(long int d);
+char	*ft_itoa(long long int d);
 char	*ft_itoa_sign(long int d);
 char	*ft_str_cut(t_print *tab, char *str);
-char	*ft_str_multi_padding_left(t_print *tab, char *src, char *padding);
+char	*ft_str_multi_padding_left(char *src, char *padding);
 char	*ft_str_padding(t_print *tab, char *src, char padding, int start);
 char	*ft_integer_padding(t_print *tab, int s, char padding, int flag);
-char	*ft_int_add_char(long int d, char c);
+char	*ft_int_add_char(long long int d, char c);
 char	*ft_pf_nbr_hexlow(unsigned int nbr);
 char	*ft_pf_nbr_hexup(unsigned int nbr);
 
@@ -61,14 +61,15 @@ const char	*ft_width_precision(t_print *tab, const char *str, int flag);
 void	ft_update_tab(t_print *tab, const char *str);
 void	ft_pf_putchar_width(char c, int size);
 
-void	ft_printchar(t_print *tab);
-void	ft_printstr(t_print *tab);
-void	ft_printinteger(t_print *tab);
-void	ft_printhex_low(t_print *tab);
-void	ft_printhex_up(t_print *tab);
+int	ft_printchar(t_print *tab);
+int	ft_printstr(t_print *tab);
+int	ft_printinteger(t_print *tab);
+int	ft_printdecimal(t_print *tab);
+int	ft_printhex_low(t_print *tab);
+int	ft_printhex_up(t_print *tab);
 
-void	ft_pf_putchar(char c);
-void	ft_pf_putstr(char *s);
+int	ft_pf_putchar(char c);
+int	ft_pf_putstr(char *s);
 void	ft_pf_putnbr(int n);
 void	ft_pf_putnbr_u(unsigned int n);
 void	ft_pf_putnbr_hexup(unsigned int nbr);

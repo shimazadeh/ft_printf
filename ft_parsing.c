@@ -6,7 +6,7 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 18:46:47 by shabibol          #+#    #+#             */
-/*   Updated: 2022/03/14 15:10:35 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/03/15 18:36:30 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ t_print	*ft_pf_EvalFlag(t_print *tab, const char c)
 	if (c == '-')//left justified
 		tab->dash = 1;
 	if (c == '.')
-		tab->pnt = 1;
-	if (c == '#')//
+		tab->pnt = 1;//precision exist
+	if (c == '#')//pad 0x
 		tab->hashtag = 1;
 	if (c == ' ')//padd with space
 		tab->space = 1;

@@ -6,7 +6,7 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 20:11:37 by shabibol          #+#    #+#             */
-/*   Updated: 2022/03/14 19:53:51 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/03/15 17:09:44 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft_printf.h"
@@ -61,7 +61,7 @@ int	ft_get_digits(long int n)
 	return (size);
 }
 
-char	*ft_itoa(long int n)
+char	*ft_itoa(long long int n)
 {
 	char		*result;
 	long int	num;
