@@ -6,7 +6,7 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 17:35:02 by shabibol          #+#    #+#             */
-/*   Updated: 2022/03/15 18:29:52 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/03/16 21:36:17 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int	ft_strchr_boolean(char c, char *str);
 int	ft_strlen(char *str);
 int	ft_printf(const char* str, ...);
 
+char	*ft_strndup(char *src, int size);
 char	*ft_itoa(long long int d);
 char	*ft_itoa_sign(long int d);
 char	*ft_str_cut(t_print *tab, char *str);

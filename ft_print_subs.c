@@ -6,27 +6,31 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 15:21:43 by shabibol          #+#    #+#             */
-/*   Updated: 2022/03/16 19:23:43 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/03/16 22:04:12 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft_printf.h"
-/*
-int	ft_printchar(t_print *tab)//relevant flags: dash. #/0/space/precision underdefined
+
+int	ft_printchar(t_print *tab)//relevant flags: dash zero. #/0/space/precision underdefined
 {
-	char	*src;
+	char	src;
+	char	*src2;
 	char	*res;
 
-	src = va_arg(tab->arg, char*);
+	src = va_arg(tab->arg, int);
+	src2 = ft_strndup(&src, 1);
 	if(tab->width)
 	{
 		if(tab->dash)
-			res = ft_str_padding(tab, src, ' ', 1);//pad space to the right
-		if(!tab->dash)
-			res = ft_str_padding(tab, src, ' ', 0);//pad space to the left
+			res = ft_str_padding(tab, src2, ' ', 1);//pad space to the right
+		if(tab->zero && !tab->dash)
+			res = ft_str_padding(tab, src2, '0', 0);//pad space to the left
+		if (!tab->zero && !tab->dash)
+			res = src2;
 	}
 	if(!tab->width)
-		res = src;
+		res = src2;
 	return (ft_pf_putstr(res));
 }
 
@@ -103,7 +107,7 @@ int	ft_printdecimal(t_print *tab)//flags: dash, zero //space and sign is underde
 		res = src2;
 	return (ft_pf_putstr(res));
 }
-*/
+
 int	ft_printhex_low(t_print	*tab)//relevant flags:dash, zero, # 
 {
 	char			*res;
@@ -133,43 +137,6 @@ int	ft_printhex_low(t_print	*tab)//relevant flags:dash, zero, #
 	return (ft_pf_putstr(res));
 }
 
-char	*test(const char *dest, ...)
-{
-	t_print *tab;
-	va_list	arg;
-	char	*str;
-
-	tab = (t_print *)malloc(sizeof(t_print));
-	va_start(tab->arg, dest);
-	ft_initialize_flags(tab);
-//	str = va_arg(tab->arg, char *);
-	ft_printhex_low(tab);
-	va_end(tab->arg);
-	return (str);
-}
-
-#include <stdio.h>
-
-int	main(void)
-{
-	test("ARGUMENTS", -1);
-	printf("\n");
-	test("ARGUMENTS:", +1);
-	printf("\n");
-	test("ARGUMENTS:", 1);
-	printf("\n");
-	test("ARGUMENTS:", 2147483647);
-	printf("\n");
-	test("ARGUMENTS:", -2147483648);
-	printf("\n");
-	printf("\n%x", -1);
-	printf("\n%x", +1);
-	printf("\n%x", 1);
-	printf("\n%x", 2147483647);
-	printf("\n%x", -2147483648);
-}
-
-/*
 int	ft_printhex_up(t_print	*tab)//relevant flags:dash, zero, #
 {
 	char			*res;
@@ -197,4 +164,4 @@ int	ft_printhex_up(t_print	*tab)//relevant flags:dash, zero, #
 	if(!tab->width && !tab->hashtag)
 		res = src;
 	return (ft_pf_putstr(res));
-}*/
+}

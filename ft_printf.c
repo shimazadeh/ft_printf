@@ -6,7 +6,7 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 05:40:01 by shabibol          #+#    #+#             */
-/*   Updated: 2022/03/16 19:23:45 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/03/16 22:05:23 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft_printf.h"
@@ -14,7 +14,7 @@
 t_print	*ft_initialize_flags(t_print *tab)
 {
 	tab->width = 0;
-	tab->precision = 0;// -1 is the initialized, 0 meants 0 precision
+	tab->precision = -1;// -1 is the initialized, 0 meants 0 precision
 	tab->zero = 0;
 	tab->dash = 0;
 	tab->pnt = 0;
@@ -25,7 +25,7 @@ t_print	*ft_initialize_flags(t_print *tab)
 	tab->width_flag = 0;
 	return (tab);
 }
-/*
+
 int	ft_eval_format(t_print *tab, const char *str)//to evaluate format
 {
 	int	i;
@@ -78,4 +78,4 @@ int	ft_printf(const char* str , ...)
 	}
 	va_end(arg);
 	return (res);
-}*/
+}
