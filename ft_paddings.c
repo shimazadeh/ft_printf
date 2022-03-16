@@ -6,7 +6,7 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 21:15:51 by shabibol          #+#    #+#             */
-/*   Updated: 2022/03/15 17:26:08 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/03/16 19:23:55 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft_printf.h"
@@ -15,10 +15,14 @@ char	*ft_str_cut(t_print *tab, char *str)//cutes the string with respect to prec
 {
 	char	*dest;
 	int		size;
+	int		i;
 
+	i = 0;
 	size = ft_strlen(str);
-	if(tab->pnt== 1 && tab->precision == 0)//meaning there is a dot but no numb
-		return (NULL);
+	if (tab->pnt == 0)
+		return (str);
+	if (tab->pnt == 1 && tab->precision == 0)//meaning there is a dot but no numb
+		size = 0;
 	if (tab->pnt == 1 && tab->precision != 0)// there is a dot and numb
 	{
 		if ((tab->precision) < size)
@@ -27,11 +31,12 @@ char	*ft_str_cut(t_print *tab, char *str)//cutes the string with respect to prec
 	dest = (char *)malloc(sizeof(char) * (size + 1));
 	if (!dest)
 		return (NULL);
-	while(str[size - 1])
+	while(str[i] && i != size)
 	{
-		dest[size - 1] = str[size - 1];
-		size--;
+		dest[i] = str[i];
+		i++;
 	}
+	dest[i] = '\0';
 	return (dest);
 }
 

@@ -6,12 +6,12 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 15:21:43 by shabibol          #+#    #+#             */
-/*   Updated: 2022/03/15 18:36:33 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/03/16 19:23:43 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft_printf.h"
-
+/*
 int	ft_printchar(t_print *tab)//relevant flags: dash. #/0/space/precision underdefined
 {
 	char	*src;
@@ -49,8 +49,9 @@ int	ft_printstr(t_print *tab)//flags: 0, dash, precision & width. # & + & spacei
 	}
 	if(!tab->width)
 		res = src2;
-	return (ft_pf_putstr(res));
+	return(ft_pf_putstr(res));
 }
+
 
 int	ft_printinteger(t_print *tab)//flags: dash, zero, space, sign //0 is ignored with dash
 {
@@ -69,7 +70,9 @@ int	ft_printinteger(t_print *tab)//flags: dash, zero, space, sign //0 is ignored
 	{
 		if(tab->dash)
 			res = ft_str_padding(tab, src2, ' ', ft_strlen(src2));//pad to the right
-		if(tab->zero)
+		if (tab->zero && ft_strchr_boolean(*src2, "+-") == 0)
+			res = ft_str_padding(tab, src2, '0', 0);//pad before the num
+		if (tab->zero && ft_strchr_boolean(*src2, "+- ") == 1)
 			res = ft_str_padding(tab, src2, '0', 1);//pad between the sign and num
 		if(!tab->dash && !tab->zero)
 			res = ft_str_padding(tab, src2, ' ', 0);//pad to the left
@@ -79,25 +82,20 @@ int	ft_printinteger(t_print *tab)//flags: dash, zero, space, sign //0 is ignored
 	return (ft_pf_putstr(res));
 }
 
-int	ft_printdecimal(t_print *tab)//flags: dash, zero, space, sign //0 is ignored with dash
+int	ft_printdecimal(t_print *tab)//flags: dash, zero //space and sign is underdefined
 {
 	char				*res;
 	unsigned int		src;
 	char				*src2;
 
 	src = va_arg(tab->arg, unsigned int);
-	if (tab->space)
-		src2 = ft_int_add_char(src, ' ');
-	if (tab->sign)
-		src2 = ft_int_add_char(src, '+');
-	if (!tab->space && !tab->sign)
-		src2 = ft_itoa(src);
+	src2 = ft_itoa(src);
 	if(tab->width)
 	{
 		if(tab->dash)
 			res = ft_str_padding(tab, src2, ' ', ft_strlen(src2));//pad to the right
 		if(tab->zero)
-			res = ft_str_padding(tab, src2, '0', 1);//pad between the sign and num
+			res = ft_str_padding(tab, src2, '0', 0);//pad to the left
 		if(!tab->dash && !tab->zero)
 			res = ft_str_padding(tab, src2, ' ', 0);//pad to the left
 	}
@@ -105,7 +103,7 @@ int	ft_printdecimal(t_print *tab)//flags: dash, zero, space, sign //0 is ignored
 		res = src2;
 	return (ft_pf_putstr(res));
 }
-
+*/
 int	ft_printhex_low(t_print	*tab)//relevant flags:dash, zero, # 
 {
 	char			*res;
@@ -135,6 +133,43 @@ int	ft_printhex_low(t_print	*tab)//relevant flags:dash, zero, #
 	return (ft_pf_putstr(res));
 }
 
+char	*test(const char *dest, ...)
+{
+	t_print *tab;
+	va_list	arg;
+	char	*str;
+
+	tab = (t_print *)malloc(sizeof(t_print));
+	va_start(tab->arg, dest);
+	ft_initialize_flags(tab);
+//	str = va_arg(tab->arg, char *);
+	ft_printhex_low(tab);
+	va_end(tab->arg);
+	return (str);
+}
+
+#include <stdio.h>
+
+int	main(void)
+{
+	test("ARGUMENTS", -1);
+	printf("\n");
+	test("ARGUMENTS:", +1);
+	printf("\n");
+	test("ARGUMENTS:", 1);
+	printf("\n");
+	test("ARGUMENTS:", 2147483647);
+	printf("\n");
+	test("ARGUMENTS:", -2147483648);
+	printf("\n");
+	printf("\n%x", -1);
+	printf("\n%x", +1);
+	printf("\n%x", 1);
+	printf("\n%x", 2147483647);
+	printf("\n%x", -2147483648);
+}
+
+/*
 int	ft_printhex_up(t_print	*tab)//relevant flags:dash, zero, #
 {
 	char			*res;
@@ -162,4 +197,4 @@ int	ft_printhex_up(t_print	*tab)//relevant flags:dash, zero, #
 	if(!tab->width && !tab->hashtag)
 		res = src;
 	return (ft_pf_putstr(res));
-}
+}*/
