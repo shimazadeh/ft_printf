@@ -6,11 +6,11 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 12:24:54 by shabibol          #+#    #+#             */
-/*   Updated: 2022/03/17 18:00:52 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/03/17 23:18:31 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft_printf.h"
+#include "ft_printf.h"
 
 int	ft_pf_putchar(char c)
 {
@@ -57,14 +57,18 @@ char	*ft_pf_nbr_hexlow(unsigned int nbr)
 	ref = "0123456789abcdef";
 	num = nbr;
 	digit = ft_get_digit_hex(nbr);
-	result = (char *)malloc(sizeof(char) * (digit + 1));
+	result = malloc(sizeof(char) * (digit + 1));
 	if (!result)
 		return (NULL);
-	while (digit--)
+	if (nbr == 0)
+		result[0] = '0';
+	result[digit + 1] = '\0';
+	while (digit-- && nbr != 0)
 	{
 		result[digit] = ref[num % 16];
 		num = num / 16;
 	}
+	free (result);
 	return (result);
 }
 
@@ -81,10 +85,14 @@ char	*ft_pf_nbr_hexup(unsigned int nbr)
 	result = (char *)malloc(sizeof(char) * (digit + 1));
 	if (!result)
 		return (NULL);
-	while (digit--)
+	if (nbr == 0)
+		result[0] = '0';
+	result[digit + 1] = '\0';
+	while (digit-- && nbr != 0)
 	{
 		result[digit] = ref[num % 16];
 		num = num / 16;
 	}
+	free (result);
 	return (result);
 }

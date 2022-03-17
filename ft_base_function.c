@@ -6,10 +6,10 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 20:11:37 by shabibol          #+#    #+#             */
-/*   Updated: 2022/03/15 17:09:44 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/03/17 20:43:29 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft_printf.h"
+#include "ft_printf.h"
 
 int	ft_strchr_boolean(char c, char *str)
 {
@@ -85,6 +85,7 @@ char	*ft_itoa(long long int n)
 	}
 	if (n < 0)
 		result[0] = '-';
+	free(result);
 	return (result);
 }
 

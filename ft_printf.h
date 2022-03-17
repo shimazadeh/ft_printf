@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft_printf.h                                     :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/07 17:35:02 by shabibol          #+#    #+#             */
-/*   Updated: 2022/03/17 18:15:05 by shabibol         ###   ########.fr       */
+/*   Created: 2022/03/17 20:17:00 by shabibol          #+#    #+#             */
+/*   Updated: 2022/03/17 20:17:04 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_PRINTF_H
-# define LIBFT_PRINTF_H
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
 # include <stdarg.h>
 # include <stdlib.h>

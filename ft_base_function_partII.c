@@ -6,10 +6,10 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 15:18:03 by shabibol          #+#    #+#             */
-/*   Updated: 2022/03/16 21:55:21 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/03/17 20:50:39 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft_printf.h"
+#include "ft_printf.h"
 
 int	ft_strlen(char *str)
 {
@@ -43,5 +43,6 @@ char	*ft_strndup(char	*src, int size)
 		i++;
 	}
 	s2[i] = '\0';
+	free (s2);
 	return (s2);
 }

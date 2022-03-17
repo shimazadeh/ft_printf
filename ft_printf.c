@@ -6,10 +6,10 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 05:40:01 by shabibol          #+#    #+#             */
-/*   Updated: 2022/03/17 18:09:20 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/03/17 23:22:05 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft_printf.h"
+#include "ft_printf.h"
 
 t_print	*ft_initialize_flags(t_print *tab)
 {
@@ -80,11 +80,19 @@ int	ft_printf(const char *str, ...)
 #include <stdio.h>
 int	main(int ac, char **av)
 {
-	char	*str;
+	int	i;;
+	int j;
+	
+	i = ft_printf("this is a test: %x", 0);
+	ft_printf("\nthis is a test: %x", 5);
+	ft_printf("\nthis is a test: %x", 10);
+	ft_printf("\nthis is a test: %x", 54);
 
-	str = "S";
-	ft_printf("this is a pointer test: %p", str);
-	printf("\nthis is a pointer test: %p", str);
+//	printf("\n");
+//	j = printf("this is a test: %x", 0);
+//	printf("the value of i is %d, and j is %d\n", i, j);
+//	ft_printf("this is a test: %x", 16);
+//	printf("\nthis is a test: %x", 16);
 	ft_printf("This is an integer test: %d", 456);
 	printf("  correct answer is %d\n", 456);
 	ft_printf("This is an integer test: %d", -456);
@@ -115,4 +123,5 @@ int	main(int ac, char **av)
 	ft_printf("This is an integer test: %i", 456);
 	printf("  correct answer is %i\n", 456);
 	return (0);
+
 }*/

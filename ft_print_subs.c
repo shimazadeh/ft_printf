@@ -6,11 +6,11 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 15:21:43 by shabibol          #+#    #+#             */
-/*   Updated: 2022/03/17 17:58:26 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/03/17 21:37:05 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft_printf.h"
+#include "ft_printf.h"
 
 int	ft_printchar(t_print *tab)//relevant flags: dash zero. #/0/space/precision underdefined
 {
@@ -41,6 +41,8 @@ int	ft_printstr(t_print *tab)//flags: 0, dash, precision & width. # & + & spacei
 	char	*src2;
 
 	src = va_arg(tab->arg, char *);
+	if (!src)
+		return (0);
 	src2 = ft_str_cut(tab, src);
 	if (tab->width)
 	{
@@ -170,8 +172,10 @@ int	ft_printpointer(t_print	*tab)//only width and dash. zero, space, hashtag, si
 {
 	char			*res;
 	char			*src;
+	char			*src2;
 
-	src = ft_str_multi_padding_left(ft_pf_nbr_hexlow(va_arg(tab->arg, unsigned long)), "0x");
+	src = ft_pf_nbr_hexlow(va_arg(tab->arg, unsigned long));
+	src2 = ft_str_multi_padding_left(src, "0x");
 	if (tab->width)
 	{
 		if (tab->dash)

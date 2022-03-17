@@ -6,10 +6,10 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 21:15:51 by shabibol          #+#    #+#             */
-/*   Updated: 2022/03/17 18:01:58 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/03/17 20:39:59 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft_printf.h"
+#include "ft_printf.h"
 
 char	*ft_str_cut(t_print *tab, char *str)
 {
