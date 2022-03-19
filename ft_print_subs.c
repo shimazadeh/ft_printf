@@ -31,8 +31,7 @@ int	ft_printchar(t_print *tab)//relevant flags: dash zero. #/0/space/precision u
 	}
 	if (!tab->width)
 		res = src2;
-	free (res);
-	return (ft_pf_putchar(*res));
+	return (ft_pf_putchar_addr(res));
 }
 
 int	ft_printstr(t_print *tab)//flags: 0, dash, precision & width. # & + & spaceignored when s is used
@@ -135,7 +134,6 @@ int	ft_printhex_low(t_print	*tab)//relevant flags:dash, zero, #
 		res = src2;
 	if (!tab->width && !tab->hashtag)
 		res = src;
-	free (res);
 	return (ft_pf_putstr(res));
 }
 
@@ -165,7 +163,6 @@ int	ft_printhex_up(t_print	*tab)//relevant flags:dash, zero, #
 		res = src2;
 	if (!tab->width && !tab->hashtag)
 		res = src;
-	free (res);
 	return (ft_pf_putstr(res));
 }
 
@@ -186,8 +183,6 @@ int	ft_printpointer(t_print	*tab)//only width and dash. zero, space, hashtag, si
 	}
 	if (!tab->width)
 		res = src;
-	free (src);
-	free (src2);
 	return (ft_pf_putstr(res));
 }
 

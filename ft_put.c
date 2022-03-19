@@ -12,7 +12,14 @@
 
 #include "ft_printf.h"
 
-int	ft_pf_putchar(char c)
+int	ft_pf_putchar_addr(char *c)
+{
+	write(1, c, 1);
+	free(c);
+	return(1);
+}
+
+int	ft_pf_putchar(const char c)
 {
 	write(1, &c, 1);
 	return (1);
@@ -25,13 +32,10 @@ int	ft_pf_putstr(char *s)
 	i = 0;
 	if (s == NULL)
 		s = "(null)";
-	if (s != NULL)
+	while (s[i] != '\0')
 	{
-		while (s[i] != '\0')
-		{
-			write(1, &s[i], 1);
-			i++;
-		}
+		write(1, &s[i], 1);
+		i++;
 	}
 	free(s);
 	return (i);

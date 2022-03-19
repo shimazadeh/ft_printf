@@ -42,7 +42,7 @@ int			ft_eval_format(t_print *tab, const char *str);
 int			ft_strchr_boolean(char c, char *str);
 int			ft_strlen(char *str);
 int			ft_printf(const char *str, ...);
-int			ft_pf_putchar(char c);
+int			ft_pf_putchar(const char c);
 int			ft_pf_putstr(char *s);
 
 char		*ft_strndup(char *src, int size);
@@ -70,5 +70,7 @@ int			ft_printdecimal(t_print *tab);
 int			ft_printhex_low(t_print *tab);
 int			ft_printhex_up(t_print *tab);
 int			ft_printpointer(t_print *tab);
+
+int	ft_pf_putchar_addr(char *c);
 
 #endif

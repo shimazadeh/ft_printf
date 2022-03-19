@@ -17,10 +17,10 @@ char	*ft_str_cut(t_print *tab, char *str)
 	int		size;
 	int		i;
 
-	i = 0;
 	size = ft_strlen(str);
-	if (tab->pnt == 0)
-		return (str);
+	i = 0;
+//	if (tab->pnt == 0)
+//		return (str);
 	if (tab->pnt == 1 && tab->precision == 0)
 		size = 0;
 	if (tab->pnt == 1 && tab->precision != 0)
@@ -45,9 +45,7 @@ char	*ft_str_multi_padding_left(char *src, char *padding)
 	char	*res;
 	int		i;
 	int		width;
-	int		y;
 
-	y = 0;
 	width = ft_strlen(src) + ft_strlen(padding);
 	i = 0;
 	res = (char *)malloc(sizeof(char) *(width + 1));

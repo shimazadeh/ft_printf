@@ -85,9 +85,9 @@ int	main(int ac, char **av)
 	void	*src;
 
 	src = "12";
-	i = ft_printf("this is a test: %i.", 0);
+	i = ft_printf("this is a test: %c.", 's');
 	printf("\n");
-	j = printf("this is a test: %i.", 0);
+	j = printf("this is a test: %c.", 's');
 	printf("\n");
 	printf("the value of i is %d, and j is %d", i, j);
 
@@ -127,4 +127,5 @@ int	main(int ac, char **av)
 	printf("  correct answer is %i\n", 456);
 	return (0);
 
-}*/
+}
+*/

@@ -1,6 +1,7 @@
 a.out
 .DS_STORE
 printftester
+printfTester
 *.o
 libftprintf.a
 unittest
