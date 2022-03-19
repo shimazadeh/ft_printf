@@ -35,8 +35,8 @@ char	*ft_strndup(char	*src, int size)
 
 	i = 0;
 	s2 = malloc(sizeof(char) * (size + 1));
-//	if (s2 == NULL)
-//		return (NULL);
+	if (s2 == NULL)
+		return (NULL);
 	while (s2 && i != size)
 	{
 		s2[i] = src[i];
