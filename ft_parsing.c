@@ -6,7 +6,7 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 18:46:47 by shabibol          #+#    #+#             */
-/*   Updated: 2022/03/17 20:17:52 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/03/19 19:55:09 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	ft_str_count(const char *str)
 	int		i;
 	char	*s;
 
-	s = "dcusxX.";
+	s = "dcuisxXp.";
 	size = 0;
 	i = 0;
 	while (str[i])
@@ -68,7 +68,7 @@ const char	*ft_width_precision(t_print	*tab, const char *str, int flag)
 	buff = (char *) malloc(sizeof(char) * (size + 1));
 	if (!buff)
 		return (NULL);
-	while (!ft_strchr_boolean(*str, "dscuxXp."))
+	while (!ft_strchr_boolean(*str, "dsicuxXp."))
 	{
 		buff[j] = *str;
 		str++;
@@ -86,7 +86,7 @@ const char	*ft_width_precision(t_print	*tab, const char *str, int flag)
 
 void	ft_update_tab(t_print *tab, const char *str)
 {
-	while (!ft_strchr_boolean(*str, "dcusxX"))
+	while (!ft_strchr_boolean(*str, "dicusxXp"))
 	{
 		if (ft_isdigit(*str) == 0)
 			ft_pf_evalflag(tab, *str);

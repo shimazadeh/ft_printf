@@ -6,7 +6,7 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 20:17:00 by shabibol          #+#    #+#             */
-/*   Updated: 2022/03/17 20:17:04 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/03/19 16:04:15 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,11 @@ typedef struct s_print
 	int			sign;
 	int			perc;
 	int			width_flag;
+	int			len_print;
 }t_print;
 
 int			ft_isdigit(int c);
-int			ft_get_digits_hex(int c);
+int			ft_get_digits_hex(unsigned long long c);
 int			ft_get_digits(long int c);
 int			ft_atoi(const char *str);
 int			ft_str_count(const char *str);
@@ -51,7 +52,7 @@ char		*ft_str_cut(t_print *tab, char *str);
 char		*ft_str_multi_padding_left(char *src, char *padding);
 char		*ft_str_padding(t_print *tab, char *src, char padding, int start);
 char		*ft_int_add_char(long long int d, char c);
-char		*ft_pf_nbr_hexlow(unsigned int nbr);
+char		*ft_pf_nbr_hexlow(unsigned long long nbr);
 char		*ft_pf_nbr_hexup(unsigned int nbr);
 
 t_print		*ft_pf_evalflag(t_print *tab, const char c);

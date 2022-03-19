@@ -1,0 +1,7 @@
+a.out
+.DS_STORE
+printftester
+*.o
+libftprintf.a
+unittest
+Info.plist

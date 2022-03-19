@@ -6,7 +6,7 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 21:15:51 by shabibol          #+#    #+#             */
-/*   Updated: 2022/03/17 20:39:59 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/03/19 17:53:26 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
@@ -42,28 +42,34 @@ char	*ft_str_cut(t_print *tab, char *str)
 
 char	*ft_str_multi_padding_left(char *src, char *padding)
 {
-	char	*dest;
+	char	*res;
 	int		i;
 	int		width;
+	int		y;
 
+	y = 0;
 	width = ft_strlen(src) + ft_strlen(padding);
 	i = 0;
-	dest = (char *)malloc(sizeof(char) *(width + 1));
-	if (!dest || !padding)
+	res = (char *)malloc(sizeof(char) *(width + 1));
+	if (!res || !padding)
 		return (NULL);
-	while (padding[i])
+	while (padding[i] != '\0')
 	{
-		dest[i] = padding[i];
+		res[i] = padding[i];
+//		printf("padding is %c\n", padding[i]);
 		i++;
 	}
-	while (*src)
+//	printf("src before while is %s and i is %d\n", src, i);
+	while (src && i < width)
 	{
-		dest[i] = *src;
+//		printf("src before is %s\n", src);
+		res[i] = *src;
+//		printf("src after is %s\n", src);
 		i++;
 		src++;
 	}
-	dest[i] = '\0';
-	return (dest);
+	res[i] = '\0';
+	return (res);
 }
 
 char	*ft_str_padding(t_print *tab, char *src, char padding, int start)

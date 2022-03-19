@@ -6,7 +6,7 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 12:24:54 by shabibol          #+#    #+#             */
-/*   Updated: 2022/03/17 23:18:31 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/03/19 19:52:56 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int	ft_pf_putstr(char *s)
 	int	i;
 
 	i = 0;
+	if (s == NULL)
+		s = "(null)";
 	if (s != NULL)
 	{
 		while (s[i] != '\0')
@@ -31,10 +33,11 @@ int	ft_pf_putstr(char *s)
 			i++;
 		}
 	}
+	free(s);
 	return (i);
 }
 
-int	ft_get_digit_hex(unsigned int n)
+int	ft_get_digit_hex(unsigned long long n)
 {
 	int	size;
 
@@ -47,11 +50,11 @@ int	ft_get_digit_hex(unsigned int n)
 	return (size);
 }
 
-char	*ft_pf_nbr_hexlow(unsigned int nbr)
+char	*ft_pf_nbr_hexlow(unsigned long long nbr)
 {
 	char		*result;
 	int			digit;
-	long int	num;
+	unsigned long long 	num;
 	char		*ref;
 
 	ref = "0123456789abcdef";
@@ -68,7 +71,6 @@ char	*ft_pf_nbr_hexlow(unsigned int nbr)
 		result[digit] = ref[num % 16];
 		num = num / 16;
 	}
-	free (result);
 	return (result);
 }
 
@@ -93,6 +95,5 @@ char	*ft_pf_nbr_hexup(unsigned int nbr)
 		result[digit] = ref[num % 16];
 		num = num / 16;
 	}
-	free (result);
 	return (result);
 }

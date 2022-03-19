@@ -6,7 +6,7 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 05:40:01 by shabibol          #+#    #+#             */
-/*   Updated: 2022/03/17 23:22:05 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/03/19 19:43:31 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
@@ -32,7 +32,7 @@ int	ft_eval_format(t_print *tab, const char *str)
 
 	i = 0;
 	ft_update_tab(tab, str);
-	if (*str == 'd' || *str == 'i')
+	if (*str == 'i' || *str == 'd')
 		i = ft_printinteger(tab);
 	if (*str == 'c')
 		i = ft_printchar(tab);
@@ -73,20 +73,23 @@ int	ft_printf(const char *str, ...)
 		str++;
 	}
 	va_end(arg);
-	free (tab);
+	free(tab);
 	return (res);
 }
 /*
 #include <stdio.h>
 int	main(int ac, char **av)
 {
-	int	i;;
+	int	i;
 	int j;
-	
-	i = ft_printf("this is a test: %x", 0);
-	ft_printf("\nthis is a test: %x", 5);
-	ft_printf("\nthis is a test: %x", 10);
-	ft_printf("\nthis is a test: %x", 54);
+	void	*src;
+
+	src = "12";
+	i = ft_printf("this is a test: %i.", 0);
+	printf("\n");
+	j = printf("this is a test: %i.", 0);
+	printf("\n");
+	printf("the value of i is %d, and j is %d", i, j);
 
 //	printf("\n");
 //	j = printf("this is a test: %x", 0);

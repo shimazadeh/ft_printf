@@ -6,7 +6,7 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 15:21:43 by shabibol          #+#    #+#             */
-/*   Updated: 2022/03/17 21:37:05 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/03/19 19:52:08 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ int	ft_printchar(t_print *tab)//relevant flags: dash zero. #/0/space/precision u
 	}
 	if (!tab->width)
 		res = src2;
-	return (ft_pf_putstr(res));
+	free (res);
+	return (ft_pf_putchar(*res));
 }
 
 int	ft_printstr(t_print *tab)//flags: 0, dash, precision & width. # & + & spaceignored when s is used
@@ -41,8 +42,6 @@ int	ft_printstr(t_print *tab)//flags: 0, dash, precision & width. # & + & spacei
 	char	*src2;
 
 	src = va_arg(tab->arg, char *);
-	if (!src)
-		return (0);
 	src2 = ft_str_cut(tab, src);
 	if (tab->width)
 	{
@@ -136,6 +135,7 @@ int	ft_printhex_low(t_print	*tab)//relevant flags:dash, zero, #
 		res = src2;
 	if (!tab->width && !tab->hashtag)
 		res = src;
+	free (res);
 	return (ft_pf_putstr(res));
 }
 
@@ -165,6 +165,7 @@ int	ft_printhex_up(t_print	*tab)//relevant flags:dash, zero, #
 		res = src2;
 	if (!tab->width && !tab->hashtag)
 		res = src;
+	free (res);
 	return (ft_pf_putstr(res));
 }
 
@@ -174,7 +175,7 @@ int	ft_printpointer(t_print	*tab)//only width and dash. zero, space, hashtag, si
 	char			*src;
 	char			*src2;
 
-	src = ft_pf_nbr_hexlow(va_arg(tab->arg, unsigned long));
+	src = ft_pf_nbr_hexlow((unsigned long)va_arg(tab->arg, void *));
 	src2 = ft_str_multi_padding_left(src, "0x");
 	if (tab->width)
 	{
@@ -185,5 +186,8 @@ int	ft_printpointer(t_print	*tab)//only width and dash. zero, space, hashtag, si
 	}
 	if (!tab->width)
 		res = src;
+	free (src);
+	free (src2);
 	return (ft_pf_putstr(res));
 }
+
