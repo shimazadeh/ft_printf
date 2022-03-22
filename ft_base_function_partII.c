@@ -6,7 +6,7 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 15:18:03 by shabibol          #+#    #+#             */
-/*   Updated: 2022/03/19 18:28:57 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/03/22 14:45:17 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
@@ -45,3 +45,21 @@ char	*ft_strndup(char	*src, int size)
 	s2[i] = '\0';
 	return (s2);
 }
+/*
+char	*ft_set_null(char *src)
+{
+	char	*dest;
+	char	*ref;
+	int		i;
+
+	i = 0;
+	ref = "(null)";
+	dest = malloc(sizeof(char) * 7);
+	while (ref[i])
+	{
+		dest[i] = ref[i];
+		i++;
+	}
+	dest[i] = '\0';
+	return (dest);
+}*/

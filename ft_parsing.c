@@ -6,7 +6,7 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 18:46:47 by shabibol          #+#    #+#             */
-/*   Updated: 2022/03/19 19:55:09 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/03/22 21:46:37 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	ft_str_count(const char *str)
 	int		i;
 	char	*s;
 
-	s = "dcuisxXp.";
+	s = "dcuisxXp.%";
 	size = 0;
 	i = 0;
 	while (str[i])
@@ -56,7 +56,7 @@ int	ft_str_count(const char *str)
 	return (size);
 }
 
-const char	*ft_width_precision(t_print	*tab, const char *str, int flag)
+void	*ft_width_precision(t_print *tab, const char **str, int flag)
 {
 	char	*buff;
 	int		result;
@@ -64,14 +64,14 @@ const char	*ft_width_precision(t_print	*tab, const char *str, int flag)
 	int		size;
 
 	j = 0;
-	size = ft_str_count(str);
+	size = ft_str_count(*str);
 	buff = (char *) malloc(sizeof(char) * (size + 1));
 	if (!buff)
 		return (NULL);
-	while (!ft_strchr_boolean(*str, "dsicuxXp."))
+	while (!ft_strchr_boolean(**str, "dsicuxXp.%"))
 	{
-		buff[j] = *str;
-		str++;
+		buff[j] = **str;
+		(*str)++;
 		j++;
 	}
 	buff[j] = '\0';
@@ -81,23 +81,24 @@ const char	*ft_width_precision(t_print	*tab, const char *str, int flag)
 	else
 		tab->precision = result;
 	free (buff);
-	return (str);
+	return (0);
 }
 
-void	ft_update_tab(t_print *tab, const char *str)
+void	*ft_update_tab(t_print *tab, const char **str)
 {
-	while (!ft_strchr_boolean(*str, "dicusxXp"))
+	while (!ft_strchr_boolean(**str, "dicusxXp%"))
 	{
-		if (ft_isdigit(*str) == 0)
-			ft_pf_evalflag(tab, *str);
-		if (ft_isdigit(*str) == 1)
-			str = ft_width_precision(tab, str, 0);
-		if (*str == '.')
+		if (ft_isdigit(**str) == 0)
+			ft_pf_evalflag(tab, **str);
+		if (ft_isdigit(**str) == 1)
+			ft_width_precision(tab, str, 0);
+		if (**str == '.')
 		{
 			tab->pnt = 1;
-			str = ft_width_precision(tab, ++str, 1);
+			ft_width_precision(tab, ++str, 1);
 		}
-		str++;
+		if (!ft_strchr_boolean(**str, "dicusxXp%"))
+			(*str)++;
 	}
 	if (tab->space && tab->sign)
 		tab->space = 0;
@@ -105,4 +106,5 @@ void	ft_update_tab(t_print *tab, const char *str)
 		tab->zero = 0;
 	if (tab->width)
 		tab->width_flag = 1;
+	return (0);
 }
