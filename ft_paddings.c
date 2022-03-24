@@ -6,7 +6,7 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 21:15:51 by shabibol          #+#    #+#             */
-/*   Updated: 2022/03/22 22:14:21 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/03/24 15:13:25 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
@@ -72,7 +72,40 @@ char	*ft_str_padding(t_print *tab, char *src, char *padding, int start)
 	int		i;
 	int		width;
 
-	width = tab->width;
+	width = ft_max_width(tab, src);
+	i = 0;
+	dest = (char *)malloc(sizeof(char) *(width + 1));
+	if (!dest)
+		return (NULL);
+	while (*src && i != start)
+	{
+		dest[i++] = *src;
+		src++;
+	}
+	while (padding && i != (width - ft_strlen(src)))
+	{
+		dest[i] = *padding;
+		i++;
+	}
+	while (*src)
+	{
+		dest[i] = *src;
+		i++;
+		src++;
+	}
+	dest[i] = '\0';
+	return (dest);
+}
+
+char	*ft_char_padding(t_print *tab, char *src, char *padding, int start)
+{
+	char	*dest;
+	int		i;
+	int		width;
+
+	width = ft_max_width(tab, src);
+	if (ft_strlen(src) == 0)
+		width = width - 1;
 	i = 0;
 	dest = (char *)malloc(sizeof(char) *(width + 1));
 	if (!dest)
