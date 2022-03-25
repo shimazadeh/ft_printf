@@ -6,7 +6,7 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 12:24:54 by shabibol          #+#    #+#             */
-/*   Updated: 2022/03/24 12:33:29 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/03/25 14:29:01 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,12 @@ int	ft_pf_putstr_char(char *s)
 	return (i);
 }
 
-int	ft_pf_putstr_char_null(char *s)
+int	ft_pf_putstr_char_null(t_print *tab, char *s)
 {
 	int	i;
 
 	i = 0;
-	while (i != ft_strlen(s) + 1)
+	while (i != tab->width)
 	{
 		write (1, &s[i], 1);
 		i++;

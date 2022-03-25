@@ -6,7 +6,7 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 20:17:00 by shabibol          #+#    #+#             */
-/*   Updated: 2022/03/24 12:32:54 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/03/25 14:30:50 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,6 @@ int			ft_printpointer(t_print *tab);
 int	ft_pf_putchar_addr(char *c);
 int	ft_max_width(t_print *tab, char *src);
 int	ft_pf_putstr_char(char *s);
-char	*ft_char_padding(t_print *tab, char *src, char *padding, int start);
-int	ft_pf_putstr_char_null(char *s);
+char	*ft_char_padding(t_print *tab, char *src, char *padding);
+int	ft_pf_putstr_char_null(t_print *tab, char *s);
 #endif

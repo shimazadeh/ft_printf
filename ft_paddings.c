@@ -6,7 +6,7 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 21:15:51 by shabibol          #+#    #+#             */
-/*   Updated: 2022/03/24 15:13:25 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/03/25 15:27:08 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
@@ -97,35 +97,29 @@ char	*ft_str_padding(t_print *tab, char *src, char *padding, int start)
 	return (dest);
 }
 
-char	*ft_char_padding(t_print *tab, char *src, char *padding, int start)
+char	*ft_char_padding(t_print *tab, char *src, char *padding)
 {
 	char	*dest;
 	int		i;
 	int		width;
 
 	width = ft_max_width(tab, src);
-	if (ft_strlen(src) == 0)
-		width = width - 1;
-	i = 0;
+	i = 1;
 	dest = (char *)malloc(sizeof(char) *(width + 1));
 	if (!dest)
 		return (NULL);
-	while (*src && i != start)
-	{
-		dest[i++] = *src;
-		src++;
-	}
-	while (padding && i != (width - ft_strlen(src)))
+	dest[0] = *src;
+	while (padding && i != width + 1)
 	{
 		dest[i] = *padding;
 		i++;
 	}
-	while (*src)
-	{
-		dest[i] = *src;
-		i++;
-		src++;
-	}
+//	while (*src)
+//	{
+//		dest[i] = *src;
+//		i++;
+//		src++;
+//	}
 	dest[i] = '\0';
 	return (dest);
 }
@@ -137,7 +131,7 @@ char	*ft_int_add_char(long long int d, char c)
 	char	*src;
 
 	i = 1;
-	src = ft_itoa(d);
+//	src = ft_itoa(d);
 	if (!c || d < 0)
 	{
 		dest = ft_itoa(d);
@@ -145,6 +139,7 @@ char	*ft_int_add_char(long long int d, char c)
 	}
 	else
 	{
+		src = ft_itoa(d);
 		dest = (char *)malloc(sizeof(char) * (ft_strlen(src) + 2));
 		dest[0] = c;
 		while (*src)

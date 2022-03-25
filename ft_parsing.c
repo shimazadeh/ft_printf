@@ -6,7 +6,7 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 18:46:47 by shabibol          #+#    #+#             */
-/*   Updated: 2022/03/22 21:46:37 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/03/25 13:03:03 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	*ft_width_precision(t_print *tab, const char **str, int flag)
 	buff = (char *) malloc(sizeof(char) * (size + 1));
 	if (!buff)
 		return (NULL);
-	while (!ft_strchr_boolean(**str, "dsicuxXp.%"))
+	while (!ft_strchr_boolean(**str, "dsicuxXp%"))
 	{
 		buff[j] = **str;
 		(*str)++;

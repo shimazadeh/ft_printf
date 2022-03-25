@@ -6,7 +6,7 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 15:21:43 by shabibol          #+#    #+#             */
-/*   Updated: 2022/03/24 15:13:23 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/03/25 15:27:06 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,19 @@ int	ft_printchar(t_print *tab)//relevant flags: dash zero. #/0/space/precision u
 	if (tab->width)
 	{
 		if (tab->dash)
-			res = ft_char_padding(tab, src2, " ", 1);
+		{
+			if (!src)
+				res = ft_char_padding(tab, src2, " ");
+			else
+				res = ft_str_padding(tab, src2, " ", 1);
+		}
 		if (tab->zero)
-			res = ft_char_padding(tab, src2, "0", 0);//pad space to the left
+			res = ft_str_padding(tab, src2, "0", 0);//pad space to the left
 		if (!tab->zero && !tab->dash)
-			res = ft_char_padding(tab, src2, " ", 0);
+			res = ft_str_padding(tab, src2, " ", 0);
 		free(src2);
 		if (!src)
-			return (ft_pf_putstr_char_null(res));
+			return (ft_pf_putstr_char_null(tab, res));
 		else
 			return (ft_pf_putstr_char(res));
 	}
@@ -174,16 +179,16 @@ int	ft_printhex_low(t_print	*tab)//relevant flags:dash, zero, #
 		}
 		if (!tab->width)
 			res = src2;
-		free(src2);
+//		free(src2);
 	}
 	if (!tab->hashtag)
 	{
 		if (tab->width)
 		{
-			if (!tab->hashtag && tab->zero)
+			if (tab->zero)
 				res = ft_str_padding(tab, src, "0", 0);//pad to the left
-			if (!tab->hashtag && tab->dash)
-				res = ft_str_padding(tab, src, " ", 0);//pad to the left
+			if (tab->dash)
+				res = ft_str_padding(tab, src, " ", ft_strlen(src));//pad to the left
 			if (!tab->dash && !tab->zero)
 				res = ft_str_padding(tab, src, " ", 0);
 		}
@@ -250,10 +255,10 @@ int	ft_printhex_up(t_print	*tab)//relevant flags:dash, zero, #
 	{
 		if (tab->width)
 		{
-			if (!tab->hashtag && tab->zero)
+			if (tab->zero)
 				res = ft_str_padding(tab, src, "0", 0);//pad to the left
-			if (!tab->hashtag && tab->dash)
-				res = ft_str_padding(tab, src, " ", 0);//pad to the left
+			if (tab->dash)
+				res = ft_str_padding(tab, src, " ", ft_strlen(src));//pad to the left
 			if (!tab->dash && !tab->zero)
 				res = ft_str_padding(tab, src, " ", 0);
 		}
