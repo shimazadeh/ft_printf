@@ -6,7 +6,7 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 20:17:00 by shabibol          #+#    #+#             */
-/*   Updated: 2022/03/25 14:30:50 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/03/28 18:40:44 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ char		*ft_itoa(long long int d);
 char		*ft_itoa_sign(long int d);
 char		*ft_str_cut(t_print *tab, char *str);
 char		*ft_str_multi_padding_left(char *src, char *padding);
-char		*ft_str_padding(t_print *tab, char *src, char *padding, int start);
+char		*ft_str_padding(int width, char *src, char *padding, int start);
 char		*ft_int_add_char(long long int d, char c);
 char		*ft_pf_nbr_hexlow(unsigned long long nbr);
 char		*ft_pf_nbr_hexup(unsigned int nbr);
@@ -72,8 +72,11 @@ int			ft_printhex_up(t_print *tab);
 int			ft_printpointer(t_print *tab);
 
 int	ft_pf_putchar_addr(char *c);
-int	ft_max_width(t_print *tab, char *src);
+int	ft_max_width(int width, char *src);
+int	ft_max_precision(t_print *tab, char *src);
 int	ft_pf_putstr_char(char *s);
 char	*ft_char_padding(t_print *tab, char *src, char *padding);
 int	ft_pf_putstr_char_null(t_print *tab, char *s);
+char	*ft_str_padding_precision(t_print *tab, char *src, char *padding, int start);
+char	*ft_eval_space_sign(t_print *tab, int src);
 #endif

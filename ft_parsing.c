@@ -6,7 +6,7 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 18:46:47 by shabibol          #+#    #+#             */
-/*   Updated: 2022/03/25 13:03:03 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/03/28 15:33:37 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,8 +94,8 @@ void	*ft_update_tab(t_print *tab, const char **str)
 			ft_width_precision(tab, str, 0);
 		if (**str == '.')
 		{
-			tab->pnt = 1;
-			ft_width_precision(tab, ++str, 1);
+			(*str)++;
+			ft_width_precision(tab, str, 1);
 		}
 		if (!ft_strchr_boolean(**str, "dicusxXp%"))
 			(*str)++;

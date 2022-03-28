@@ -6,7 +6,7 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 05:40:01 by shabibol          #+#    #+#             */
-/*   Updated: 2022/03/25 14:43:39 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/03/28 19:40:45 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
@@ -79,20 +79,17 @@ int	ft_printf(const char *str, ...)
 	free(tab);
 	return (res);
 }
+
 /*
 #include <stdio.h>
-int	main(int ac, char **av)
+int	main(void)
 {
-	int i;
-	int j;
-	int x;
-	int y;
+	ft_printf(" %.3d\n", -10);
+	printf(" %.3d\n", -10);
 
-	i = ft_printf("test 1:[%-4x]\n", 9);
-	j = printf("test 1:[%-4x]\n", 9);
-	printf("i is equal to %d, j is equal to %d\n", i, j);
+	ft_printf(" %+.3d\n", 10);
+	printf(" %+.3d\n", 10);
 
-	x = ft_printf("test 2:[%-4x]\n", 16);
-	y = printf("test 2:[%-4x]\n", 16);
-	printf("x is equal to %d, y is equal to %d\n", x, y);
+	ft_printf(" %+.3d\n", +10);
+	printf(" %+.3d\n", +10);
 }*/

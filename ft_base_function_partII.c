@@ -6,7 +6,7 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 15:18:03 by shabibol          #+#    #+#             */
-/*   Updated: 2022/03/23 20:52:04 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/03/28 18:40:15 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
@@ -46,18 +46,31 @@ char	*ft_strndup(char	*src, int size)
 	return (s2);
 }
 
-int	ft_max_width(t_print *tab, char *src)
+int	ft_max_width(int width, char *src)
 {
 	int	src_len;
-	int	width;
 
-	width = tab->width;
 	src_len = ft_strlen(src);
 	if (width > ft_strlen(src))
 		return (width);
 	else
 		return (ft_strlen(src));
 }
+
+int	ft_max_precision(t_print *tab, char *src)
+{
+	int	src_len;
+	int	width;
+
+	width = tab->precision;
+	src_len = ft_strlen(src);
+	if (width > ft_strlen(src))
+		return (width);
+	else
+		return (ft_strlen(src));
+}
+
+
 /*
 char	*ft_set_null(char *src)
 {

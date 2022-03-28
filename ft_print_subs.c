@@ -6,7 +6,7 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 15:21:43 by shabibol          #+#    #+#             */
-/*   Updated: 2022/03/25 15:27:06 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/03/28 19:51:56 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@ int	ft_printchar(t_print *tab)//relevant flags: dash zero. #/0/space/precision u
 			if (!src)
 				res = ft_char_padding(tab, src2, " ");
 			else
-				res = ft_str_padding(tab, src2, " ", 1);
+				res = ft_str_padding(tab->width, src2, " ", 1);
 		}
 		if (tab->zero)
-			res = ft_str_padding(tab, src2, "0", 0);//pad space to the left
+			res = ft_str_padding(tab->width, src2, "0", 0);//pad space to the left
 		if (!tab->zero && !tab->dash)
-			res = ft_str_padding(tab, src2, " ", 0);
+			res = ft_str_padding(tab->width, src2, " ", 0);
 		free(src2);
 		if (!src)
 			return (ft_pf_putstr_char_null(tab, res));
@@ -63,11 +63,11 @@ int	ft_printstr(t_print *tab)//flags: 0, dash, precision & width. # & + & spacei
 	if (tab->width)
 	{
 		if (!tab->zero && !tab->dash)
-			res = ft_str_padding(tab, src2, " ", 0);//pad to the left
+			res = ft_str_padding(tab->width, src2, " ", 0);//pad to the left
 		if (tab->zero)
-			res = ft_str_padding(tab, src2, "0", 0);//pad to the left
+			res = ft_str_padding(tab->width, src2, "0", 0);//pad to the left
 		if (tab->dash)
-			res = ft_str_padding(tab, src2, " ", ft_strlen(src2));//pad to the right
+			res = ft_str_padding(tab->width, src2, " ", ft_strlen(src2));//pad to the right
 		free(src2);
 	}
 	if (!tab->width)
@@ -81,27 +81,31 @@ int	ft_printinteger(t_print *tab)//flags: dash, zero, space, sign //0 is ignored
 	char	*res;
 	int		src;
 	char	*src2;
+//	char	*src3;
 
 	src = va_arg(tab->arg, int);
-	if (tab->space)
-		src2 = ft_int_add_char(src, ' ');
-	if (tab->sign)
-		src2 = ft_int_add_char(src, '+');
-	if (!tab->space && !tab->sign)
-		src2 = ft_itoa(src);
+//	if (tab->space)
+//		src2 = ft_int_add_char(src, ' ');
+//	if (tab->sign)
+//		src2 = ft_int_add_char(src, '+');
+//	if (!tab->space && !tab->sign)
+//		src2 = ft_itoa(src);
+//	if (tab->pnt == 1)
+//		src2 = ft_str_padding_precision(tab, src2, "0", 1);
+	src2 = ft_eval_space_sign(tab, src);
 	if (tab->width)
 	{
 		if (tab->dash)
-			res = ft_str_padding(tab, src2, " ", ft_strlen(src2));//pad to the right
+			res = ft_str_padding(tab->width, src2, " ", ft_strlen(src2));//pad to the right
 		if (tab->zero && ft_strchr_boolean(*src2, "+-") == 0)
-			res = ft_str_padding(tab, src2, "0", 0);//pad before the num
+			res = ft_str_padding(tab->width, src2, "0", 0);//pad before the num
 		if (tab->zero && ft_strchr_boolean(*src2, "+- ") == 1)
-			res = ft_str_padding(tab, src2, "0", 1);//pad between the sign and num
+			res = ft_str_padding(tab->width, src2, "0", 1);//pad between the sign and num
 		if (!tab->dash && !tab->zero)
-			res = ft_str_padding(tab, src2, " ", 0);//pad to the left
+			res = ft_str_padding(tab->width, src2, " ", 0);//pad to the left
 		free(src2);
 	}
-	if(!tab->width)
+	if (!tab->width)
 		res = src2;
 	return (ft_pf_putstr(res));
 }
@@ -117,11 +121,11 @@ int	ft_printdecimal(t_print *tab)//flags: dash, zero //space and sign is underde
 	if (tab->width)
 	{
 		if (tab->dash)
-			res = ft_str_padding(tab, src2, " ", ft_strlen(src2));//pad to the right
+			res = ft_str_padding(tab->width, src2, " ", ft_strlen(src2));//pad to the right
 		if (tab->zero)
-			res = ft_str_padding(tab, src2, "0", 0);//pad to the left
+			res = ft_str_padding(tab->width, src2, "0", 0);//pad to the left
 		if (!tab->dash && !tab->zero)
-			res = ft_str_padding(tab, src2, " ", 0);//pad to the left
+			res = ft_str_padding(tab->width, src2, " ", 0);//pad to the left
 		free(src2);
 	}
 	if (!tab->width)
@@ -156,8 +160,8 @@ int	ft_printhex_low(t_print	*tab)//relevant flags:dash, zero, #
 	if (!tab->width && !tab->hashtag)
 		res = src;
 	return (ft_pf_putstr(res));
-}*/
-
+}
+*/
 int	ft_printhex_low(t_print	*tab)//relevant flags:dash, zero, #
 {
 	char			*res;
@@ -171,26 +175,26 @@ int	ft_printhex_low(t_print	*tab)//relevant flags:dash, zero, #
 		if (tab->width)
 		{
 			if (!tab->dash && !tab->zero)
-				res = ft_str_padding(tab, src2, " ", 0);//pad to the left
+				res = ft_str_padding(tab->width, src2, " ", 0);//pad to the left
 			if (tab->dash)
-				res = ft_str_padding(tab, src2, " ", ft_strlen(src2));//pad to the right
+				res = ft_str_padding(tab->width, src2, " ", ft_strlen(src2));//pad to the right
 			if (tab->zero)
-				res = ft_str_padding(tab, src2, "0", 2);//pad after the second char (0x)
+				res = ft_str_padding(tab->width, src2, "0", 2);//pad after the second char (0x)
 		}
 		if (!tab->width)
 			res = src2;
-//		free(src2);
+		free(src2);
 	}
 	if (!tab->hashtag)
 	{
 		if (tab->width)
 		{
 			if (tab->zero)
-				res = ft_str_padding(tab, src, "0", 0);//pad to the left
+				res = ft_str_padding(tab->width, src, "0", 0);//pad to the left
 			if (tab->dash)
-				res = ft_str_padding(tab, src, " ", ft_strlen(src));//pad to the left
+				res = ft_str_padding(tab->width, src, " ", ft_strlen(src));//pad to the left
 			if (!tab->dash && !tab->zero)
-				res = ft_str_padding(tab, src, " ", 0);
+				res = ft_str_padding(tab->width, src, " ", 0);
 		}
 		if (!tab->width)
 			res = src;
@@ -226,8 +230,8 @@ int	ft_printhex_up(t_print	*tab)//relevant flags:dash, zero, #
 	if (!tab->width && !tab->hashtag)
 		res = src;
 	return (ft_pf_putstr(res));
-}*/
-
+}
+*/
 int	ft_printhex_up(t_print	*tab)//relevant flags:dash, zero, #
 {
 	char			*res;
@@ -241,11 +245,11 @@ int	ft_printhex_up(t_print	*tab)//relevant flags:dash, zero, #
 		if (tab->width)
 		{
 			if (!tab->dash && !tab->zero)
-				res = ft_str_padding(tab, src2, " ", 0);//pad to the left
+				res = ft_str_padding(tab->width, src2, " ", 0);//pad to the left
 			if (tab->dash)
-				res = ft_str_padding(tab, src2, " ", ft_strlen(src2));//pad to the right
+				res = ft_str_padding(tab->width, src2, " ", ft_strlen(src2));//pad to the right
 			if (tab->zero)
-				res = ft_str_padding(tab, src2, "0", 2);//pad after the second char (0x)
+				res = ft_str_padding(tab->width, src2, "0", 2);//pad after the second char (0x)
 		}
 		if (!tab->width)
 			res = src2;
@@ -256,11 +260,11 @@ int	ft_printhex_up(t_print	*tab)//relevant flags:dash, zero, #
 		if (tab->width)
 		{
 			if (tab->zero)
-				res = ft_str_padding(tab, src, "0", 0);//pad to the left
+				res = ft_str_padding(tab->width, src, "0", 0);//pad to the left
 			if (tab->dash)
-				res = ft_str_padding(tab, src, " ", ft_strlen(src));//pad to the left
+				res = ft_str_padding(tab->width, src, " ", ft_strlen(src));//pad to the left
 			if (!tab->dash && !tab->zero)
-				res = ft_str_padding(tab, src, " ", 0);
+				res = ft_str_padding(tab->width, src, " ", 0);
 		}
 		if (!tab->width)
 			res = src;
@@ -273,18 +277,22 @@ int	ft_printpointer(t_print	*tab)//only width and dash. zero, space, hashtag, si
 {
 	char			*res;
 	char			*src;
-//	char			*src2;
+	char			*src2;
 
-	src = ft_str_multi_padding_left(ft_pf_nbr_hexlow((unsigned long)va_arg(tab->arg, void *)), "0x");
+	src = ft_pf_nbr_hexlow((unsigned long)va_arg(tab->arg, void *));
+//	src = ft_str_multi_padding_left(ft_pf_nbr_hexlow((unsigned long)va_arg(tab->arg, void *)), "0x");
+	src2 = ft_str_multi_padding_left(src, "0x");
 	if (tab->width)
 	{
 		if (tab->dash)
-			res = ft_str_padding(tab, src, " ", ft_strlen(src));//pad to the right
+			res = ft_str_padding(tab->width, src2, " ", ft_strlen(src2));//pad to the right
 		if (!tab->dash)
-			res = ft_str_padding(tab, src, " ", 0);//pad to the left
+			res = ft_str_padding(tab->width, src2, " ", 0);//pad to the left
+		free(src2);
 	}
 	if (!tab->width)
-		res = src;
+		res = src2;
+	free(src);
 	return (ft_pf_putstr(res));
 }
 
