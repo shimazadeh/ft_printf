@@ -6,7 +6,7 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 05:40:01 by shabibol          #+#    #+#             */
-/*   Updated: 2022/03/28 19:40:45 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/03/28 21:10:06 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
@@ -84,12 +84,12 @@ int	ft_printf(const char *str, ...)
 #include <stdio.h>
 int	main(void)
 {
-	ft_printf(" %.3d\n", -10);
-	printf(" %.3d\n", -10);
+	ft_printf(" %#x\n", 0);
+	printf(" %#x\n", 0);
 
-	ft_printf(" %+.3d\n", 10);
-	printf(" %+.3d\n", 10);
+	ft_printf(" %.3x\n", -10);
+	printf(" %.3x\n", -10);
 
-	ft_printf(" %+.3d\n", +10);
-	printf(" %+.3d\n", +10);
+	ft_printf(" %.3x\n", +10);
+	printf(" %.3x\n", +10);
 }*/

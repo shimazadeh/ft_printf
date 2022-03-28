@@ -6,7 +6,7 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 21:15:51 by shabibol          #+#    #+#             */
-/*   Updated: 2022/03/28 19:44:31 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/03/28 21:26:34 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
@@ -39,37 +39,6 @@ char	*ft_str_cut(t_print *tab, char *str)
 	dest[i] = '\0';
 	return (dest);
 }
-/*
-char	*ft_str_padding_precision(t_print *tab, char *src, char *padding, int start)
-{
-	char	*dest;
-	int		i;
-	int		width;
-
-	width = ft_max_precision(tab, src);
-	i = 0;
-	dest = (char *)malloc(sizeof(char) *(width + 1));
-	if (!dest)
-		return (NULL);
-	while (*src && i != start)
-	{
-		dest[i++] = *src;
-		src++;
-	}
-	while (padding && i != (width - ft_strlen(src)))
-	{
-		dest[i] = *padding;
-		i++;
-	}
-	while (*src)
-	{
-		dest[i] = *src;
-		i++;
-		src++;
-	}
-	dest[i] = '\0';
-	return (dest);
-}*/
 
 char	*ft_eval_space_sign(t_print *tab, int src)
 {
@@ -185,12 +154,8 @@ char	*ft_int_add_char(long long int d, char c)
 	char	*src;
 
 	i = 1;
-//	src = ft_itoa(d);
 	if (!c || d < 0)
-	{
-//		dest = ft_itoa(d);
 		return (ft_itoa(d));
-	}
 	else
 	{
 		src = ft_itoa(d);
