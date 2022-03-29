@@ -6,7 +6,7 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 21:15:51 by shabibol          #+#    #+#             */
-/*   Updated: 2022/03/28 21:26:34 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/03/29 21:05:40 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
@@ -19,8 +19,6 @@ char	*ft_str_cut(t_print *tab, char *str)
 
 	size = ft_strlen(str);
 	i = 0;
-//	if (tab->pnt == 0)
-//		return (str);
 	if (tab->pnt == 1 && tab->precision == 0)
 		size = 0;
 	if (tab->pnt == 1 && tab->precision != 0)
@@ -40,33 +38,138 @@ char	*ft_str_cut(t_print *tab, char *str)
 	return (dest);
 }
 
+char	*ft_eval_space(t_print *tab, int src)
+{
+	char	*src2;
+	char	*src3;
+
+	src2 = ft_int_add_char(src, ' ');
+	if (tab->pnt == 1)
+	{
+		src3 = ft_str_padding(tab->precision, src2, "0", 1);
+		free (src2);
+	}
+	else
+		src3 = src2;
+	return (src3);
+}
+
+char	*ft_eval_sign(t_print *tab, int src)
+{
+	char	*src2;
+	char	*src3;
+
+	src2 = ft_int_add_char(src, '+');
+	if (tab->pnt == 1)
+	{
+		src3 = ft_str_padding(tab->precision + 1, src2, "0", 1);
+		free (src2);
+	}
+	else
+		src3 = src2;
+	return (src3);
+}
+
 char	*ft_eval_space_sign(t_print *tab, int src)
 {
 	char	*src2;
+	char	*src3;
+
 	if (tab->space)
-	{
-		src2 = ft_int_add_char(src, ' ');
-		if (tab->pnt == 1)
-			src2 = ft_str_padding(tab->precision, src2, "0", 1);
-	}
+		src3 = ft_eval_space(tab, src);
+//	{
+//		src2 = ft_int_add_char(src, ' ');
+//		if (tab->pnt == 1)
+//		{
+//			src3 = ft_str_padding(tab->precision, src2, "0", 1);
+//			free (src2);
+//		}
+//		else
+//			src3 = src2;
+//	}
 	if (tab->sign)
-	{
-		src2 = ft_int_add_char(src, '+');
-		if (tab->pnt == 1)
-			src2 = ft_str_padding(tab->precision + 1, src2, "0", 1);
-	}
+		src3 = ft_eval_sign(tab, src);
+//	{
+//		src2 = ft_int_add_char(src, '+');
+//		if (tab->pnt == 1)
+//		{
+//			src3 = ft_str_padding(tab->precision + 1, src2, "0", 1);
+//			free(src2);
+//		}
+//		else
+//			src3 = src2;
+//	}
 	if (!tab->sign && !tab->space)
 	{
 		src2 = ft_itoa(src);
 		if (tab->pnt == 1)
 		{
 			if (src < 0)
-				src2 = ft_str_padding(tab->precision + 1, src2, "0", 1);
+				src3 = ft_str_padding(tab->precision + 1, src2, "0", 1);
 			else
-				src2 = ft_str_padding(tab->precision, src2, "0", 0);
+				src3 = ft_str_padding(tab->precision, src2, "0", 0);
+			free(src2);
 		}
+		else
+			src3 = src2;
 	}
-	return (src2);
+	return (src3);
+}
+
+char	*ft_eval_hashtag_pnt(t_print *tab, char *src)
+{
+	char	*src2;
+	char	*src3;
+
+	if (tab->pnt == 1)
+	{
+		src2 = ft_str_padding(tab->precision, src, "0", 0);
+		if (tab->hashtag && *src != '0')
+		{
+			src3 = ft_str_multi_padding_left(src2, "0x");
+			free (src2);
+			free (src);
+			return (src3);
+		}
+		free(src);
+		return (src2);
+	}
+	if (tab->hashtag && *src != '0')
+	{
+		src2 = ft_str_multi_padding_left(src, "0x");
+		free (src);
+		return (src2);
+	}
+	else
+		return (src);
+}
+
+char	*ft_eval_hashtag_pnt_uppx(t_print *tab, char *src)
+{
+	char	*src2;
+	char	*src3;
+
+	if (tab->pnt == 1)
+	{
+		src2 = ft_str_padding(tab->precision, src, "0", 0);
+		if (tab->hashtag && *src != '0')
+		{
+			src3 = ft_str_multi_padding_left(src2, "0X");
+			free (src2);
+			free (src);
+			return (src3);
+		}
+		free(src);
+		return (src2);
+	}
+	if (tab->hashtag && *src != '0')
+	{
+		src2 = ft_str_multi_padding_left(src, "0X");
+		free(src);
+		return (src2);
+	}
+	else
+		return (src);
 }
 
 char	*ft_str_multi_padding_left(char *src, char *padding)
@@ -152,8 +255,10 @@ char	*ft_int_add_char(long long int d, char c)
 	int		i;
 	char	*dest;
 	char	*src;
+	int		j;
 
 	i = 1;
+	j = 0;
 	if (!c || d < 0)
 		return (ft_itoa(d));
 	else
@@ -161,13 +266,14 @@ char	*ft_int_add_char(long long int d, char c)
 		src = ft_itoa(d);
 		dest = (char *)malloc(sizeof(char) * (ft_strlen(src) + 2));
 		dest[0] = c;
-		while (*src)
+		while (src[j])
 		{
-			dest[i] = *src;
+			dest[i] = src[j];
 			i++;
-			src++;
+			j++;
 		}
 		dest[i] = '\0';
 	}
+	free(src);
 	return (dest);
 }

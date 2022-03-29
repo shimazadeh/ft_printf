@@ -6,7 +6,7 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 20:17:00 by shabibol          #+#    #+#             */
-/*   Updated: 2022/03/28 18:40:44 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/03/29 21:05:38 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,10 @@ int	ft_pf_putstr_char(char *s);
 char	*ft_char_padding(t_print *tab, char *src, char *padding);
 int	ft_pf_putstr_char_null(t_print *tab, char *s);
 char	*ft_str_padding_precision(t_print *tab, char *src, char *padding, int start);
+
 char	*ft_eval_space_sign(t_print *tab, int src);
+char	*ft_eval_hashtag_pnt(t_print *tab, char *src);
+char	*ft_eval_hashtag_pnt_uppx(t_print *tab, char *src);
+char	*ft_eval_sign(t_print *tab, int src);
+char	*ft_eval_space(t_print *tab, int src);
 #endif

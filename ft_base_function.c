@@ -6,7 +6,7 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 20:11:37 by shabibol          #+#    #+#             */
-/*   Updated: 2022/03/28 14:55:49 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/03/29 20:12:15 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
@@ -83,32 +83,5 @@ char	*ft_itoa(long long int n)
 	}
 	if (n < 0)
 		result[0] = '-';
-	return (result);
-}
-
-char	*ft_itoa_sign(long int n)
-{
-	char		*result;
-	long int	num;
-	size_t		digit;
-
-	num = n;
-	digit = ft_get_digits(n);
-	if (n <= 0)
-		num *= -1;
-	digit++;
-	result = (char *)malloc(sizeof(char) * (digit + 1));
-	if (!result)
-		return (NULL);
-	result[digit] = '\0';
-	while (digit--)
-	{
-		result[digit] = num % 10 + '0';
-		num = num / 10;
-	}
-	if (n < 0)
-		result[0] = '-';
-	else
-		result[0] = '+';
 	return (result);
 }
