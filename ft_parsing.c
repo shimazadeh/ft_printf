@@ -6,7 +6,7 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 18:46:47 by shabibol          #+#    #+#             */
-/*   Updated: 2022/03/28 15:33:37 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/03/30 16:49:17 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	*ft_width_precision(t_print *tab, const char **str, int flag)
 	buff = (char *) malloc(sizeof(char) * (size + 1));
 	if (!buff)
 		return (NULL);
-	while (!ft_strchr_boolean(**str, "dsicuxXp%"))
+	while (!ft_strchr_boolean(**str, "dsicuxXp.%"))
 	{
 		buff[j] = **str;
 		(*str)++;
@@ -94,6 +94,7 @@ void	*ft_update_tab(t_print *tab, const char **str)
 			ft_width_precision(tab, str, 0);
 		if (**str == '.')
 		{
+			tab->pnt = 1;
 			(*str)++;
 			ft_width_precision(tab, str, 1);
 		}
@@ -104,7 +105,16 @@ void	*ft_update_tab(t_print *tab, const char **str)
 		tab->space = 0;
 	if (tab->dash && tab->zero)
 		tab->zero = 0;
-	if (tab->width)
+	if (tab->width && tab->precision < tab->width)
+	{
 		tab->width_flag = 1;
+		tab->pnt = 0;
+		tab->precision = -1;
+	}
+	if (tab->width && tab->precision >= tab->width)
+	{
+		tab->width_flag = 0;
+		tab->width = 0;
+	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 15:21:43 by shabibol          #+#    #+#             */
-/*   Updated: 2022/03/29 20:00:10 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/03/30 18:31:17 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,7 +137,7 @@ int	ft_printhex_low(t_print	*tab)
 
 	src = ft_pf_nbr_hexlow(va_arg(tab->arg, unsigned int));
 	src2 = ft_eval_hashtag_pnt(tab, src);
-	if (tab->width)
+	if (tab->width > 0)
 	{
 		if (!tab->dash && !tab->zero)
 			res = ft_str_padding(tab->width, src2, " ", 0);
