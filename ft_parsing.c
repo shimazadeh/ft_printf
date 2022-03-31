@@ -109,7 +109,7 @@ void	*ft_update_tab(t_print *tab, const char **str)
 	{
 		tab->width_flag = 1;
 		tab->pnt = 0;
-		tab->precision = -1;
+		tab->precision = 0;
 	}
 	if (tab->width && tab->precision >= tab->width)
 	{

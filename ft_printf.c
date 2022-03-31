@@ -14,7 +14,7 @@
 t_print	*ft_initialize_flags(t_print *tab)
 {
 	tab->width = 0;
-	tab->precision = -1;
+	tab->precision = 0;
 	tab->zero = 0;
 	tab->dash = 0;
 	tab->pnt = 0;
@@ -84,10 +84,7 @@ int	ft_printf(const char *str, ...)
 #include <stdio.h>
 int	main(void)
 {
-	ft_printf(" %.d\n", 0);
-	printf(" %.d\n", 0);
-
-	ft_printf(" %.d\n", 1);
-	printf(" %.d\n", 1);
+	ft_printf(" %-10.d\n", 0);
+	printf(" %-10.d\n", 0);
 
 }

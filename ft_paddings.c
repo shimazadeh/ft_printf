@@ -77,34 +77,19 @@ char	*ft_eval_space_sign(t_print *tab, int src)
 
 	if (tab->space)
 		src3 = ft_eval_space(tab, src);
-//	{
-//		src2 = ft_int_add_char(src, ' ');
-//		if (tab->pnt == 1)
-//		{
-//			src3 = ft_str_padding(tab->precision, src2, "0", 1);
-//			free (src2);
-//		}
-//		else
-//			src3 = src2;
-//	}
 	if (tab->sign)
 		src3 = ft_eval_sign(tab, src);
-//	{
-//		src2 = ft_int_add_char(src, '+');
-//		if (tab->pnt == 1)
-//		{
-//			src3 = ft_str_padding(tab->precision + 1, src2, "0", 1);
-//			free(src2);
-//		}
-//		else
-//			src3 = src2;
-//	}
 	if (!tab->sign && !tab->space)
 	{
 		src2 = ft_itoa(src);
 		if (tab->pnt == 1)
 		{
-			if (src < 0)
+			if (tab->precision == 0 && src == 0)
+			{
+				src3 = (char *)malloc(sizeof(char) * 1);
+				src3[0] = '\0';
+			}
+			else if (src < 0)
 				src3 = ft_str_padding(tab->precision + 1, src2, "0", 1);
 			else
 				src3 = ft_str_padding(tab->precision, src2, "0", 0);
@@ -123,13 +108,21 @@ char	*ft_eval_hashtag_pnt(t_print *tab, char *src)
 
 	if (tab->pnt == 1)
 	{
-		src2 = ft_str_padding(tab->precision, src, "0", 0);
-		if (tab->hashtag && *src != '0')
+		if (tab->precision == 0 && src[0] == '0')
 		{
-			src3 = ft_str_multi_padding_left(src2, "0x");
-			free (src2);
-			free (src);
-			return (src3);
+			src2 = (char *)malloc(sizeof(char) * 1);
+			src2[0] = '\0';
+		}
+		else
+		{
+			src2 = ft_str_padding(tab->precision, src, "0", 0);
+			if (tab->hashtag && *src != '0')
+			{
+				src3 = ft_str_multi_padding_left(src2, "0x");
+				free (src2);
+				free (src);
+				return (src3);
+			}
 		}
 		free(src);
 		return (src2);
@@ -151,13 +144,21 @@ char	*ft_eval_hashtag_pnt_uppx(t_print *tab, char *src)
 
 	if (tab->pnt == 1)
 	{
-		src2 = ft_str_padding(tab->precision, src, "0", 0);
-		if (tab->hashtag && *src != '0')
+		if(tab->precision == 0 && src[0] == '0')
 		{
-			src3 = ft_str_multi_padding_left(src2, "0X");
-			free (src2);
-			free (src);
-			return (src3);
+			src2 = (char *)malloc(sizeof(char) * 1);
+			src2[0] = '\0';
+		}
+		else
+		{
+			src2 = ft_str_padding(tab->precision, src, "0", 0);
+			if (tab->hashtag && *src != '0')
+			{
+				src3 = ft_str_multi_padding_left(src2, "0X");
+				free (src2);
+				free (src);
+				return (src3);
+			}
 		}
 		free(src);
 		return (src2);
