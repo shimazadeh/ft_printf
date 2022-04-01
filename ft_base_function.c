@@ -85,3 +85,18 @@ char	*ft_itoa(long long int n)
 		result[0] = '-';
 	return (result);
 }
+
+char	*ft_assign_null(char *src)
+{
+	char	*dest;
+	int		i;
+
+	i = 0;
+	dest = (char *)malloc(sizeof(char) * 7);
+	while (src[i])
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	return (dest);
+}

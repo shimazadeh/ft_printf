@@ -84,4 +84,6 @@ char	*ft_eval_hashtag_pnt(t_print *tab, char *src);
 char	*ft_eval_hashtag_pnt_uppx(t_print *tab, char *src);
 char	*ft_eval_sign(t_print *tab, int src);
 char	*ft_eval_space(t_print *tab, int src);
+
+char	*ft_assign_null(char *src);
 #endif

@@ -54,12 +54,9 @@ int	ft_printstr(t_print *tab)
 	char	*src2;
 
 	src = va_arg(tab->arg, char *);
+	if (src == NULL && tab->precision == 0)
+		src = ft_assign_null("(null)");
 	src2 = ft_str_cut(tab, src);
-	if (src == NULL)
-	{
-		free(src2);
-		return (write(1, "(null)", 6));
-	}
 	if (tab->width)
 	{
 		if (!tab->zero && !tab->dash)
@@ -72,6 +69,8 @@ int	ft_printstr(t_print *tab)
 	}
 	if (!tab->width)
 		res = src2;
+	if (src == NULL)
+		free(src);
 	return (ft_pf_putstr(res));
 }
 
@@ -91,9 +90,8 @@ int	ft_printinteger(t_print *tab)
 			res = ft_str_padding(tab->width, src2, "0", 0);
 		if (tab->zero && ft_strchr_boolean(*src2, "+- ") == 1)
 			res = ft_str_padding(tab->width, src2, "0", 1);
-		if (!tab->dash && !tab->zero)
-			res = ft_str_padding(tab->width, src2, " ", ft_strlen(src2));
-//			res = ft_str_padding(tab->width, src2, " ", 0);
+		if (!tab->dash && !tab->zero && tab->pnt == 1)
+			res = ft_str_padding(tab->width, src2, " ", 0);
 		free(src2);
 	}
 	if (!tab->width)
@@ -149,7 +147,7 @@ int	ft_printhex_low(t_print	*tab)
 		if (!tab->dash && !tab->zero)
 			res = ft_str_padding(tab->width, src2, " ", 0);
 		if (tab->dash)
-			res = ft_str_padding(tab->width, src2, " ", ft_strlen(src));
+			res = ft_str_padding(tab->width, src2, " ", ft_strlen(src2));
 		if (tab->zero)
 		{
 			if (tab->hashtag)
@@ -177,7 +175,7 @@ int	ft_printhex_up(t_print	*tab)
 		if (!tab->dash && !tab->zero)
 			res = ft_str_padding(tab->width, src2, " ", 0);
 		if (tab->dash)
-			res = ft_str_padding(tab->width, src2, " ", ft_strlen(src));
+			res = ft_str_padding(tab->width, src2, " ", ft_strlen(src2));
 		if (tab->zero)
 		{
 			if (tab->hashtag)

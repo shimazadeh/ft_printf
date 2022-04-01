@@ -81,20 +81,15 @@ char	*ft_eval_space_sign(t_print *tab, int src)
 		src3 = ft_eval_sign(tab, src);
 	if (!tab->sign && !tab->space)
 	{
-		src2 = ft_itoa(src);
-		if (tab->precision == 0 && src == 0)
+		if (src == 0 && tab->precision == 0)
 		{
-			src3 =(char *)malloc(sizeof(char) * 1);
-			src3[0] = '\0';
-			free (src2);
+			src2 = (char *)malloc(sizeof(char) * 1);
+			src2[0] = '\0';
 		}
-		if (tab->pnt == 1 && tab->precision != 0)
+		else
+			src2 = ft_itoa(src);
+		if (tab->pnt == 1)
 		{
-//			if (tab->precision == 0 && src == 0)
-//			{
-//				src3 = (char *)malloc(sizeof(char) * 1);
-//				src3[0] = '\0';
-//			}
 			if (src < 0)
 				src3 = ft_str_padding(tab->precision + 1, src2, "0", 1);
 			else
@@ -221,7 +216,7 @@ char	*ft_str_padding(int width, char *src, char *padding, int start)
 		dest[i++] = *src;
 		src++;
 	}
-	while (padding && *src && i != (final_width - ft_strlen(src)))
+	while (padding && i != (final_width - ft_strlen(src)))
 	{
 		dest[i] = *padding;
 		i++;
