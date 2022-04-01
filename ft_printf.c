@@ -6,7 +6,7 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 05:40:01 by shabibol          #+#    #+#             */
-/*   Updated: 2022/04/01 15:07:32 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/04/01 15:17:37 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
@@ -90,19 +90,19 @@ int	main(void)
 //	ft_printf("test2: [%-10.15d]\n", 0);
 //	printf("test2: [%-10.15d]\n", 0);
 
-	ft_printf("test3: [%15.10d]\n", 0);
-	printf("test3: [%-15.10d]\n", 0);
+//	ft_printf("test3: [%-15.10d]\n", 0);
+//	printf("test3: [%-15.10d]\n", 0);
 
-	ft_printf("test4: [%-15.10d]\n", 0);
-	printf("test4: [%-15.10d]\n", 0);
+//	ft_printf("test4: [%-15.10d]\n", 0);
+//	printf("test4: [%-15.10d]\n", 0);
 
-	ft_printf("test4: [%-10.d]\n", 1);
-	printf("test4: [%-10.d]\n", 1);
+//	ft_printf("test4: [%-10.d]\n", 1);
+//	printf("test4: [%-10.d]\n", 1);
 
 	ft_printf("test5: [%-10.15d]\n", 1);
 	printf("test5: [%-10.15d]\n", 1);
 
-	ft_printf("test6: [%15.10d]\n", 1);
+	ft_printf("test6: [%-15.10d]\n", 1);
 	printf("test6: [%-15.10d]\n", 1);
 
 }

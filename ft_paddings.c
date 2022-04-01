@@ -6,7 +6,7 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 21:15:51 by shabibol          #+#    #+#             */
-/*   Updated: 2022/04/01 14:32:54 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/04/01 15:29:22 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
@@ -88,7 +88,7 @@ char	*ft_eval_space_sign(t_print *tab, int src)
 			src3[0] = '\0';
 			free (src2);
 		}
-		else if (tab->pnt == 1)
+		if (tab->pnt == 1 && tab->precision != 0)
 		{
 //			if (tab->precision == 0 && src == 0)
 //			{
@@ -221,7 +221,7 @@ char	*ft_str_padding(int width, char *src, char *padding, int start)
 		dest[i++] = *src;
 		src++;
 	}
-	while (padding && i != (final_width - ft_strlen(src)))
+	while (padding && *src && i != (final_width - ft_strlen(src)))
 	{
 		dest[i] = *padding;
 		i++;
