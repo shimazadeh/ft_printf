@@ -6,7 +6,7 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 21:15:51 by shabibol          #+#    #+#             */
-/*   Updated: 2022/04/01 15:29:22 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/04/01 23:06:25 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
@@ -81,7 +81,7 @@ char	*ft_eval_space_sign(t_print *tab, int src)
 		src3 = ft_eval_sign(tab, src);
 	if (!tab->sign && !tab->space)
 	{
-		if (src == 0 && tab->precision == 0)
+		if (src == 0 && tab->pnt == 1 && tab->precision == 0)
 		{
 			src2 = (char *)malloc(sizeof(char) * 1);
 			src2[0] = '\0';
@@ -208,7 +208,7 @@ char	*ft_str_padding(int width, char *src, char *padding, int start)
 
 	final_width = ft_max_width(width, src);
 	i = 0;
-	dest = (char *)malloc(sizeof(char) *(width + 1));
+	dest = (char *)malloc(sizeof(char) *(final_width + 1));
 	if (!dest)
 		return (NULL);
 	while (*src && i != start)
@@ -248,7 +248,7 @@ char	*ft_char_padding(t_print *tab, char *src, char *padding)
 		dest[i] = *padding;
 		i++;
 	}
-	dest[i] = '\0';
+//	dest[i] = '\0';
 	return (dest);
 }
 

@@ -6,7 +6,7 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 20:17:00 by shabibol          #+#    #+#             */
-/*   Updated: 2022/03/29 21:05:38 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/04/01 21:37:02 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,5 +85,5 @@ char	*ft_eval_hashtag_pnt_uppx(t_print *tab, char *src);
 char	*ft_eval_sign(t_print *tab, int src);
 char	*ft_eval_space(t_print *tab, int src);
 
-char	*ft_assign_null(char *src);
+char	*ft_assign_null(t_print *tab);
 #endif

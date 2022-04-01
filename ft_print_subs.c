@@ -6,7 +6,7 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 15:21:43 by shabibol          #+#    #+#             */
-/*   Updated: 2022/04/01 15:29:28 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/04/01 23:20:37 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_printchar(t_print *tab)
 	char	*res;
 
 	src = va_arg(tab->arg, int);
-	if (!src)
+	if (src == 0)
 		src2 = ft_strndup(&src, 0);
 	else
 		src2 = ft_strndup(&src, 1);
@@ -35,7 +35,12 @@ int	ft_printchar(t_print *tab)
 		if (tab->zero)
 			res = ft_str_padding(tab->width, src2, "0", 0);
 		if (!tab->zero && !tab->dash)
-			res = ft_str_padding(tab->width, src2, " ", 0);
+		{
+			if (!src)
+				res = ft_str_padding(tab->width - 1, src2, " ", 0);
+			else
+				res = ft_str_padding(tab->width, src2, " ", 0);
+		}
 		free(src2);
 		if (!src)
 			return (ft_pf_putstr_char_null(tab, res));
@@ -54,23 +59,24 @@ int	ft_printstr(t_print *tab)
 	char	*src2;
 
 	src = va_arg(tab->arg, char *);
-	if (src == NULL && tab->precision == 0)
-		src = ft_assign_null("(null)");
-	src2 = ft_str_cut(tab, src);
-	if (tab->width)
+	if (src == NULL)
+		res = ft_assign_null(tab);
+	else
 	{
-		if (!tab->zero && !tab->dash)
-			res = ft_str_padding(tab->width, src2, " ", 0);
-		if (tab->zero)
-			res = ft_str_padding(tab->width, src2, "0", 0);
-		if (tab->dash)
-			res = ft_str_padding(tab->width, src2, " ", ft_strlen(src2));
-		free(src2);
-	}
+		src2 = ft_str_cut(tab, src);
+		if (tab->width)
+		{
+			if (!tab->zero && !tab->dash)
+				res = ft_str_padding(tab->width, src2, " ", 0);
+			if (tab->zero)
+				res = ft_str_padding(tab->width, src2, "0", 0);
+			if (tab->dash)
+				res = ft_str_padding(tab->width, src2, " ", ft_strlen(src2));
+			free(src2);
+		}
 	if (!tab->width)
 		res = src2;
-	if (src == NULL)
-		free(src);
+	}
 	return (ft_pf_putstr(res));
 }
 
@@ -86,11 +92,13 @@ int	ft_printinteger(t_print *tab)
 	{
 		if (tab->dash)
 			res = ft_str_padding(tab->width, src2, " ", ft_strlen(src2));
-		if (tab->zero && ft_strchr_boolean(*src2, "+-") == 0)
+		if (tab->zero && tab->pnt == 0 && ft_strchr_boolean(*src2, "+-") == 0)
 			res = ft_str_padding(tab->width, src2, "0", 0);
-		if (tab->zero && ft_strchr_boolean(*src2, "+- ") == 1)
+		if (tab->zero && tab->pnt == 0 && ft_strchr_boolean(*src2, "+- ") == 1)
 			res = ft_str_padding(tab->width, src2, "0", 1);
-		if (!tab->dash && !tab->zero && tab->pnt == 1)
+		if (tab->zero && tab->pnt == 1)
+			res = ft_str_padding(tab->width, src2, " ", 0);
+		if (!tab->dash && !tab->zero)
 			res = ft_str_padding(tab->width, src2, " ", 0);
 		free(src2);
 	}
@@ -123,8 +131,10 @@ int	ft_printdecimal(t_print *tab)
 	{
 		if (tab->dash)
 			res = ft_str_padding(tab->width, src2, " ", ft_strlen(src2));
-		if (tab->zero)
+		if (tab->zero && tab->pnt == 0)
 			res = ft_str_padding(tab->width, src2, "0", 0);
+		if (tab->zero && tab->pnt == 1)
+			res = ft_str_padding(tab->width, src2, " ", 0);
 		if (!tab->dash && !tab->zero)
 			res = ft_str_padding(tab->width, src2, " ", 0);
 		free(src2);
@@ -150,10 +160,12 @@ int	ft_printhex_low(t_print	*tab)
 			res = ft_str_padding(tab->width, src2, " ", ft_strlen(src2));
 		if (tab->zero)
 		{
-			if (tab->hashtag)
+			if (tab->hashtag && tab->pnt == 0)
 				res = ft_str_padding(tab->width, src2, "0", 2);
-			else
+			if (!tab->hashtag && tab->pnt == 0)
 				res = ft_str_padding(tab->width, src2, "0", 0);
+			if (tab->pnt == 1)
+				res = ft_str_padding(tab->width, src2, " ", 0);
 		}
 		free(src2);
 	}
@@ -178,10 +190,12 @@ int	ft_printhex_up(t_print	*tab)
 			res = ft_str_padding(tab->width, src2, " ", ft_strlen(src2));
 		if (tab->zero)
 		{
-			if (tab->hashtag)
+			if (tab->hashtag && tab->pnt == 0)
 				res = ft_str_padding(tab->width, src2, "0", 2);
-			else
+			if (!tab->hashtag && tab->pnt == 0)
 				res = ft_str_padding(tab->width, src2, "0", 0);
+			if (tab->pnt == 1)
+				res = ft_str_padding(tab->width, src2, " ", 0);
 		}
 		free(src2);
 	}

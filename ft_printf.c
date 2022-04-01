@@ -6,7 +6,7 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 05:40:01 by shabibol          #+#    #+#             */
-/*   Updated: 2022/04/01 15:17:37 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/04/01 23:20:39 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
@@ -80,61 +80,32 @@ int	ft_printf(const char *str, ...)
 	return (res);
 }
 
-
+/*
 #include <stdio.h>
 int	main(void)
 {
-	ft_printf("test1: [%-10.1s]\n", 0);
-	printf("test1: [%-10.1s]\n", 0);
+//	ft_printf("test1: [%c]\n", '\0');
+//	printf("test1: [%c]\n", '\0');
 
-	ft_printf("test1: [%-10.2s]\n", 0);
-	printf("test1: [%-10.2s]\n", 0);
+//	ft_printf("test2: [%c]\n", 0);
+//	printf("test2: [%c]\n", 0);
 
-	ft_printf("test1: [%3.2s]\n", 0);
-	printf("test1: [%3.2s]\n", 0);
+	ft_printf("test3: [%10c]\n", '\0');
+	printf("test3: [%10c]\n", '\0');
 
-	ft_printf("test1: [%-10.s]\n", "Shima");
-	printf("test1: [%-10.s]\n", "Shima");
+	ft_printf("test4: [%-10c]\n", '\0');
+	printf("test4: [%-10c]\n", '\0');
 
-	ft_printf("test2: [%-10.15s]\n", "Shima");
-	printf("test2: [%-10.15s]\n", "Shima");
+	ft_printf("test5: [%c]\n", 'c');
+	printf("test5: [%c]\n", 'c');
 
-	ft_printf("test3: [%-15.10s]\n", "Shima");
-	printf("test3: [%-15.10s]\n", "Shima");
+	ft_printf("test6: [%c]\n", 'c');
+	printf("test6: [%c]\n", 'c');
 
-	ft_printf("test4: [%-15.10s]\n", "Shima");
-	printf("test4: [%-15.10s]\n", "Shima");
+	ft_printf("test7: [%10c]\n", 'c');
+	printf("test7: [%10c]\n", 'c');
 
-	ft_printf("test5: [%-10.s]\n", "Shima");
-	printf("test5: [%-10.s]\n", "Shima");
+	ft_printf("test8: [%-10c]\n", 'c');
+	printf("test8: [%-10c]\n", 'c');
 
-	ft_printf("test6: [%-10.15s]\n", "Shima");
-	printf("test6: [%-10.15s]\n", "Shima");
-
-	ft_printf("test7: [%-15.10s]\n", "Shima");
-	printf("test7: [%-15.10s]\n", "Shima");
-
-	ft_printf("test8: [%10.s]\n", "Shima");
-	printf("test8: [%10.s]\n", "Shima");
-
-	ft_printf("test9: [%10.15s]\n", "Shima");
-	printf("test9: [%10.15s]\n", "Shima");
-
-	ft_printf("test10: [%15.10s]\n", "Shima");
-	printf("test10: [%15.10s]\n", "Shima");
-
-	ft_printf("test11: [%15.10s]\n", "Shima");
-	printf("test11: [%15.10s]\n", "Shima");
-
-	ft_printf("test12: [%10.s]\n", "Shima");
-	printf("test12: [%10.s]\n", "Shima");
-
-	ft_printf("test13: [%10.15s]\n", "Shima");
-	printf("test13: [%10.15s]\n", "Shima");
-
-	ft_printf("test14: [%15.10s]\n", "Shima");
-	printf("test14: [%15.10s]\n", "Shima");
-
-	printf("the end\n");
-
-}
+}*/

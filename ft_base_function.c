@@ -6,7 +6,7 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 20:11:37 by shabibol          #+#    #+#             */
-/*   Updated: 2022/03/29 20:12:15 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/04/01 21:38:51 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
@@ -86,17 +86,36 @@ char	*ft_itoa(long long int n)
 	return (result);
 }
 
-char	*ft_assign_null(char *src)
+char	*ft_assign_null(t_print *tab)
 {
+	char	*src;
 	char	*dest;
 	int		i;
+	char	*src2;
+	char	*res;
 
 	i = 0;
+	src = "(null)";
 	dest = (char *)malloc(sizeof(char) * 7);
 	while (src[i])
 	{
 		dest[i] = src[i];
 		i++;
 	}
-	return (dest);
+	dest[i]= '\0';
+	src2 = ft_str_cut(tab, dest);
+	if (tab->width)
+	{
+		if (!tab->zero && !tab->dash)
+			res = ft_str_padding(tab->width, src2, " ", 0);
+		if (tab->zero)
+			res = ft_str_padding(tab->width, src2, "0", 0);
+		if (tab->dash)
+			res = ft_str_padding(tab->width, src2, " ", ft_strlen(src2));
+		free(src2);
+	}
+	if (!tab->width)
+		res = src2;
+	free(dest);
+	return (res);
 }
