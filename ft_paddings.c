@@ -6,7 +6,7 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 21:15:51 by shabibol          #+#    #+#             */
-/*   Updated: 2022/03/30 18:31:19 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/04/01 14:32:54 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
@@ -82,14 +82,20 @@ char	*ft_eval_space_sign(t_print *tab, int src)
 	if (!tab->sign && !tab->space)
 	{
 		src2 = ft_itoa(src);
-		if (tab->pnt == 1)
+		if (tab->precision == 0 && src == 0)
 		{
-			if (tab->precision == 0 && src == 0)
-			{
-				src3 = (char *)malloc(sizeof(char) * 1);
-				src3[0] = '\0';
-			}
-			else if (src < 0)
+			src3 =(char *)malloc(sizeof(char) * 1);
+			src3[0] = '\0';
+			free (src2);
+		}
+		else if (tab->pnt == 1)
+		{
+//			if (tab->precision == 0 && src == 0)
+//			{
+//				src3 = (char *)malloc(sizeof(char) * 1);
+//				src3[0] = '\0';
+//			}
+			if (src < 0)
 				src3 = ft_str_padding(tab->precision + 1, src2, "0", 1);
 			else
 				src3 = ft_str_padding(tab->precision, src2, "0", 0);
@@ -207,7 +213,7 @@ char	*ft_str_padding(int width, char *src, char *padding, int start)
 
 	final_width = ft_max_width(width, src);
 	i = 0;
-	dest = (char *)malloc(sizeof(char) *(final_width + 1));
+	dest = (char *)malloc(sizeof(char) *(width + 1));
 	if (!dest)
 		return (NULL);
 	while (*src && i != start)

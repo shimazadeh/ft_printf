@@ -6,7 +6,7 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 18:46:47 by shabibol          #+#    #+#             */
-/*   Updated: 2022/03/30 16:49:17 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/04/01 15:07:18 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ void	*ft_update_tab(t_print *tab, const char **str)
 		tab->space = 0;
 	if (tab->dash && tab->zero)
 		tab->zero = 0;
-	if (tab->width && tab->precision < tab->width)
+/*	if (tab->width && tab->precision < tab->width)
 	{
 		tab->width_flag = 1;
 		tab->pnt = 0;
@@ -115,6 +115,6 @@ void	*ft_update_tab(t_print *tab, const char **str)
 	{
 		tab->width_flag = 0;
 		tab->width = 0;
-	}
+	}*/
 	return (0);
 }
