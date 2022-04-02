@@ -6,7 +6,7 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 21:15:51 by shabibol          #+#    #+#             */
-/*   Updated: 2022/04/02 17:56:02 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/04/02 19:00:54 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
@@ -37,143 +37,7 @@ char	*ft_str_cut(t_print *tab, char *str)
 	dest[i] = '\0';
 	return (dest);
 }
-/*
-char	*ft_eval_space(t_print *tab, int src)
-{
-	char	*src2;
-	char	*src3;
 
-	src2 = ft_int_add_char(src, ' ');
-	if (tab->pnt == 1)
-	{
-		src3 = ft_str_padding(tab->precision, src2, "0", 1);
-		free (src2);
-	}
-	else
-		src3 = src2;
-	return (src3);
-}
-
-char	*ft_eval_sign(t_print *tab, int src)
-{
-	char	*src2;
-	char	*src3;
-
-	src2 = ft_int_add_char(src, '+');
-	if (tab->pnt == 1)
-	{
-		src3 = ft_str_padding(tab->precision + 1, src2, "0", 1);
-		free (src2);
-	}
-	else
-		src3 = src2;
-	return (src3);
-}
-
-char	*ft_eval_space_sign(t_print *tab, int src)
-{
-	char	*src2;
-	char	*src3;
-
-	if (tab->space)
-		src3 = ft_eval_space(tab, src);
-	if (tab->sign)
-		src3 = ft_eval_sign(tab, src);
-	if (!tab->sign && !tab->space)
-	{
-		if (src == 0 && tab->pnt == 1 && tab->precision == 0)
-		{
-			src2 = (char *)malloc(sizeof(char) * 1);
-			src2[0] = '\0';
-		}
-		else
-			src2 = ft_itoa(src);
-		if (tab->pnt == 1)
-		{
-			if (src < 0)
-				src3 = ft_str_padding(tab->precision + 1, src2, "0", 1);
-			else
-				src3 = ft_str_padding(tab->precision, src2, "0", 0);
-			free(src2);
-		}
-		else
-			src3 = src2;
-	}
-	return (src3);
-}
-
-char	*ft_eval_hashtag_pnt(t_print *tab, char *src)
-{
-	char	*src2;
-	char	*src3;
-
-	if (tab->pnt == 1)
-	{
-		if (tab->precision == 0 && src[0] == '0')
-		{
-			src2 = (char *)malloc(sizeof(char) * 1);
-			src2[0] = '\0';
-		}
-		else
-		{
-			src2 = ft_str_padding(tab->precision, src, "0", 0);
-			if (tab->hashtag && *src != '0')
-			{
-				src3 = ft_str_multi_padding_left(src2, "0x");
-				free (src2);
-				free (src);
-				return (src3);
-			}
-		}
-		free(src);
-		return (src2);
-	}
-	if (tab->hashtag && *src != '0')
-	{
-		src2 = ft_str_multi_padding_left(src, "0x");
-		free (src);
-		return (src2);
-	}
-	else
-		return (src);
-}
-
-char	*ft_eval_hashtag_pnt_uppx(t_print *tab, char *src)
-{
-	char	*src2;
-	char	*src3;
-
-	if (tab->pnt == 1)
-	{
-		if(tab->precision == 0 && src[0] == '0')
-		{
-			src2 = (char *)malloc(sizeof(char) * 1);
-			src2[0] = '\0';
-		}
-		else
-		{
-			src2 = ft_str_padding(tab->precision, src, "0", 0);
-			if (tab->hashtag && *src != '0')
-			{
-				src3 = ft_str_multi_padding_left(src2, "0X");
-				free (src2);
-				free (src);
-				return (src3);
-			}
-		}
-		free(src);
-		return (src2);
-	}
-	if (tab->hashtag && *src != '0')
-	{
-		src2 = ft_str_multi_padding_left(src, "0X");
-		free(src);
-		return (src2);
-	}
-	else
-		return (src);
-}
-*/
 char	*ft_str_multi_padding_left(char *src, char *padding)
 {
 	char	*res;
@@ -217,10 +81,7 @@ char	*ft_str_padding(int width, char *src, char *padding, int start)
 		src++;
 	}
 	while (padding && i != (final_width - ft_strlen(src)))
-//	{
 		dest[i++] = *padding;
-//		i++;
-//	}
 	while (*src)
 	{
 		dest[i] = *src;
@@ -248,7 +109,6 @@ char	*ft_char_padding(t_print *tab, char *src, char *padding)
 		dest[i] = *padding;
 		i++;
 	}
-//	dest[i] = '\0';
 	return (dest);
 }
 

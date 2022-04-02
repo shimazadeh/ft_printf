@@ -6,10 +6,24 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 05:40:01 by shabibol          #+#    #+#             */
-/*   Updated: 2022/04/02 17:25:46 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/04/02 19:13:34 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
+
+int	ft_pf_putstr(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i] != '\0')
+	{
+		write(1, &s[i], 1);
+		i++;
+	}
+	free(s);
+	return (i);
+}
 
 t_print	*ft_initialize_flags(t_print *tab)
 {
@@ -46,8 +60,8 @@ int	ft_eval_format(t_print *tab, const char **str)
 		i = ft_printhex_up(tab);
 	if (**str == 'p')
 		i = ft_printpointer(tab);
-	if(**str == '%')
-		i = write(1, "%", 1);
+	if (**str == '%')
+		i = write (1, "%", 1);
 	return (i);
 }
 

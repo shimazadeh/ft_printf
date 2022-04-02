@@ -6,7 +6,7 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 12:24:54 by shabibol          #+#    #+#             */
-/*   Updated: 2022/04/02 18:03:44 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/04/02 18:58:41 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,6 @@ int	ft_pf_putchar_addr(char *c)
 	write(1, c, 1);
 	free(c);
 	return (1);
-}
-
-int	ft_pf_putstr(char *s)
-{
-	int	i;
-
-	i = 0;
-	while (s[i] != '\0')
-	{
-		write(1, &s[i], 1);
-		i++;
-	}
-	free(s);
-	return (i);
 }
 
 int	ft_pf_putstr_char(char *s)
@@ -98,27 +84,3 @@ char	*ft_pf_nbr_hex(unsigned long long nbr, char *ref)
 	}
 	return (result);
 }
-/*
-char	*ft_pf_nbr_hexup(unsigned int nbr)
-{
-	char		*result;
-	int			digit;
-	long int	num;
-	char		*ref;
-
-	ref = "0123456789ABCDEF";
-	num = nbr;
-	digit = ft_get_digit_hex(nbr);
-	result = (char *)malloc(sizeof(char) * (digit + 1));
-	if (!result)
-		return (NULL);
-	if (nbr == 0)
-		result[0] = '0';
-	result[digit] = '\0';
-	while (digit-- && nbr != 0)
-	{
-		result[digit] = ref[num % 16];
-		num = num / 16;
-	}
-	return (result);
-}*/

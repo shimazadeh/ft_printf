@@ -6,7 +6,7 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 18:05:57 by shabibol          #+#    #+#             */
-/*   Updated: 2022/04/02 18:19:36 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/04/02 18:55:13 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
@@ -70,7 +70,6 @@ char	*ft_eval_precision_int(t_print *tab, int src)
 
 char	*ft_eval_flags_int(t_print *tab, int src)
 {
-//	char	*src2;
 	char	*src3;
 
 	if (tab->space)
@@ -78,26 +77,7 @@ char	*ft_eval_flags_int(t_print *tab, int src)
 	if (tab->sign)
 		src3 = ft_eval_sign(tab, src);
 	if (!tab->sign && !tab->space)
-	{
 		src3 = ft_eval_precision_int(tab, src);
-/*		if (src == 0 && tab->pnt == 1 && tab->precision == 0)
-		{
-			src2 = (char *)malloc(sizeof(char) * 1);
-			src2[0] = '\0';
-		}
-		else
-			src2 = ft_itoa(src);
-		if (tab->pnt == 1)
-		{
-			if (src < 0)
-				src3 = ft_str_padding(tab->precision + 1, src2, "0", 1);
-			else
-				src3 = ft_str_padding(tab->precision, src2, "0", 0);
-			free(src2);
-		}
-		else
-			src3 = src2;*/
-	}
 	return (src3);
 }
 

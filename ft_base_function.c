@@ -6,7 +6,7 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 20:11:37 by shabibol          #+#    #+#             */
-/*   Updated: 2022/04/02 18:40:21 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/04/02 18:59:38 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
@@ -102,21 +102,9 @@ char	*ft_assign_null(t_print *tab)
 		dest[i] = src[i];
 		i++;
 	}
-	dest[i]= '\0';
+	dest[i] = '\0';
 	src2 = ft_str_cut(tab, dest);
 	res = ft_eval_width_str(tab, src2);
-/*	if (tab->width)
-	{
-		if (!tab->zero && !tab->dash)
-			res = ft_str_padding(tab->width, src2, " ", 0);
-		if (tab->zero)
-			res = ft_str_padding(tab->width, src2, "0", 0);
-		if (tab->dash)
-			res = ft_str_padding(tab->width, src2, " ", ft_strlen(src2));
-		free(src2);
-	}
-	if (!tab->width)
-		res = src2;*/
 	free(dest);
 	return (res);
 }
