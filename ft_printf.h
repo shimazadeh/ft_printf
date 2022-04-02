@@ -6,7 +6,7 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 20:17:00 by shabibol          #+#    #+#             */
-/*   Updated: 2022/04/01 21:37:02 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/04/02 18:19:33 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,15 +52,15 @@ char		*ft_str_cut(t_print *tab, char *str);
 char		*ft_str_multi_padding_left(char *src, char *padding);
 char		*ft_str_padding(int width, char *src, char *padding, int start);
 char		*ft_int_add_char(long long int d, char c);
-char		*ft_pf_nbr_hexlow(unsigned long long nbr);
-char		*ft_pf_nbr_hexup(unsigned int nbr);
+char		*ft_pf_nbr_hex(unsigned long long nbr, char *ref);
+//char		*ft_pf_nbr_hexup(unsigned int nbr);
 
 t_print		*ft_pf_evalflag(t_print *tab, const char c);
 t_print		*ft_initialize_flags(t_print *tab);
 
-void	*ft_width_precision(t_print *tab, const char **str, int flag);
+void		*ft_width_precision(t_print *tab, const char **str, int flag);
 
-void	*ft_update_tab(t_print *tab, const char **str);
+void		*ft_update_tab(t_print *tab, const char **str);
 void		ft_pf_putchar_width(char c, int size);
 
 int			ft_printchar(t_print *tab);
@@ -71,19 +71,26 @@ int			ft_printhex_low(t_print *tab);
 int			ft_printhex_up(t_print *tab);
 int			ft_printpointer(t_print *tab);
 
-int	ft_pf_putchar_addr(char *c);
-int	ft_max_width(int width, char *src);
-int	ft_max_precision(t_print *tab, char *src);
-int	ft_pf_putstr_char(char *s);
-char	*ft_char_padding(t_print *tab, char *src, char *padding);
-int	ft_pf_putstr_char_null(t_print *tab, char *s);
-char	*ft_str_padding_precision(t_print *tab, char *src, char *padding, int start);
+int			ft_pf_putchar_addr(char *c);
+int			ft_max_width(int width, char *src);
+int			ft_max_precision(t_print *tab, char *src);
+int			ft_pf_putstr_char(char *s);
+char		*ft_char_padding(t_print *tab, char *src, char *padding);
+int			ft_pf_putstr_char_null(t_print *tab, char *s);
+char		*ft_str_padding_precision(t_print *tab, char *src, char *padding, int start);
 
-char	*ft_eval_space_sign(t_print *tab, int src);
-char	*ft_eval_hashtag_pnt(t_print *tab, char *src);
-char	*ft_eval_hashtag_pnt_uppx(t_print *tab, char *src);
-char	*ft_eval_sign(t_print *tab, int src);
-char	*ft_eval_space(t_print *tab, int src);
+char		*ft_eval_flags_int(t_print *tab, int src);
+char		*ft_eval_flags_ex(t_print *tab, char *src, char *x);
+//char	*ft_eval_hashtag_pnt_uppx(t_print *tab, char *src);
+char		*ft_eval_sign(t_print *tab, int src);
+char		*ft_eval_space(t_print *tab, int src);
 
-char	*ft_assign_null(t_print *tab);
+char		*ft_assign_null(t_print *tab);
+char		*ft_eval_precision_int(t_print *tab, int src);
+char		*ft_eval_precision_ex(t_print *tab, char *src);
+char		*ft_eval_width_ex(t_print *tab, char *src);
+char		*ft_eval_precision_dec(t_print *tab, unsigned int d);
+char		*ft_eval_width_str(t_print *tab, char *src2);
+
+int			ft_eval_char_null(t_print *tab, char src);
 #endif

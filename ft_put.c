@@ -6,7 +6,7 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 12:24:54 by shabibol          #+#    #+#             */
-/*   Updated: 2022/03/29 19:20:26 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/04/02 18:03:44 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,6 @@ int	ft_pf_putchar_addr(char *c)
 {
 	write(1, c, 1);
 	free(c);
-	return (1);
-}
-
-int	ft_pf_putchar(const char c)
-{
-	write(1, &c, 1);
 	return (1);
 }
 
@@ -82,14 +76,13 @@ int	ft_get_digit_hex(unsigned long long n)
 	return (size);
 }
 
-char	*ft_pf_nbr_hexlow(unsigned long long nbr)
+char	*ft_pf_nbr_hex(unsigned long long nbr, char *ref)
 {
 	char				*result;
 	int					digit;
 	unsigned long long	num;
-	char				*ref;
 
-	ref = "0123456789abcdef";
+//	ref = "0123456789abcdef";
 	num = nbr;
 	digit = ft_get_digit_hex(nbr);
 	result = (char *)malloc(sizeof(char) * digit + 1);
@@ -105,7 +98,7 @@ char	*ft_pf_nbr_hexlow(unsigned long long nbr)
 	}
 	return (result);
 }
-
+/*
 char	*ft_pf_nbr_hexup(unsigned int nbr)
 {
 	char		*result;
@@ -128,4 +121,4 @@ char	*ft_pf_nbr_hexup(unsigned int nbr)
 		num = num / 16;
 	}
 	return (result);
-}
+}*/

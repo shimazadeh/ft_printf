@@ -6,10 +6,16 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 15:18:03 by shabibol          #+#    #+#             */
-/*   Updated: 2022/03/29 20:11:24 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/04/02 18:03:18 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
+
+int	ft_pf_putchar(const char c)
+{
+	write(1, &c, 1);
+	return (1);
+}
 
 int	ft_strlen(char *str)
 {

@@ -6,7 +6,7 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 05:40:01 by shabibol          #+#    #+#             */
-/*   Updated: 2022/04/01 23:20:39 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/04/02 17:25:46 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
@@ -84,28 +84,9 @@ int	ft_printf(const char *str, ...)
 #include <stdio.h>
 int	main(void)
 {
-//	ft_printf("test1: [%c]\n", '\0');
-//	printf("test1: [%c]\n", '\0');
+	ft_printf("test1: [%15c]\n", 'b');
+	printf("test1: [%15c]\n", 'b');
 
-//	ft_printf("test2: [%c]\n", 0);
-//	printf("test2: [%c]\n", 0);
-
-	ft_printf("test3: [%10c]\n", '\0');
-	printf("test3: [%10c]\n", '\0');
-
-	ft_printf("test4: [%-10c]\n", '\0');
-	printf("test4: [%-10c]\n", '\0');
-
-	ft_printf("test5: [%c]\n", 'c');
-	printf("test5: [%c]\n", 'c');
-
-	ft_printf("test6: [%c]\n", 'c');
-	printf("test6: [%c]\n", 'c');
-
-	ft_printf("test7: [%10c]\n", 'c');
-	printf("test7: [%10c]\n", 'c');
-
-	ft_printf("test8: [%-10c]\n", 'c');
-	printf("test8: [%-10c]\n", 'c');
-
+	ft_printf("test2: [%-10c]\n", 'b');
+	printf("test2: [%-10c]\n", 'b');
 }*/

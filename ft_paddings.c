@@ -6,7 +6,7 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 21:15:51 by shabibol          #+#    #+#             */
-/*   Updated: 2022/04/01 23:06:25 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/04/02 17:56:02 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
@@ -37,7 +37,7 @@ char	*ft_str_cut(t_print *tab, char *str)
 	dest[i] = '\0';
 	return (dest);
 }
-
+/*
 char	*ft_eval_space(t_print *tab, int src)
 {
 	char	*src2;
@@ -173,7 +173,7 @@ char	*ft_eval_hashtag_pnt_uppx(t_print *tab, char *src)
 	else
 		return (src);
 }
-
+*/
 char	*ft_str_multi_padding_left(char *src, char *padding)
 {
 	char	*res;
@@ -217,10 +217,10 @@ char	*ft_str_padding(int width, char *src, char *padding, int start)
 		src++;
 	}
 	while (padding && i != (final_width - ft_strlen(src)))
-	{
-		dest[i] = *padding;
-		i++;
-	}
+//	{
+		dest[i++] = *padding;
+//		i++;
+//	}
 	while (*src)
 	{
 		dest[i] = *src;
