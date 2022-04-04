@@ -6,7 +6,7 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 20:17:00 by shabibol          #+#    #+#             */
-/*   Updated: 2022/04/02 19:13:32 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/04/04 16:13:56 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ int			ft_printdecimal(t_print *tab);
 int			ft_printhex_low(t_print *tab);
 int			ft_printhex_up(t_print *tab);
 int			ft_printpointer(t_print *tab);
+int			ft_print_percent(t_print *tab);
 
 int			ft_pf_putchar_addr(char *c);
 int			ft_max_width(int width, char *src);
@@ -76,7 +77,6 @@ int			ft_max_precision(t_print *tab, char *src);
 int			ft_pf_putstr_char(char *s);
 char		*ft_char_padding(t_print *tab, char *src, char *padding);
 int			ft_pf_putstr_char_null(t_print *tab, char *s);
-//char		*ft_str_padding_precision(t_print *tab, char *src, char *padding, int start);
 
 char		*ft_eval_flags_int(t_print *tab, int src);
 char		*ft_eval_flags_ex(t_print *tab, char *src, char *x);

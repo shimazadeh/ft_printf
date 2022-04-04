@@ -6,7 +6,7 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 12:24:54 by shabibol          #+#    #+#             */
-/*   Updated: 2022/04/02 18:58:41 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/04/04 16:14:33 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ char	*ft_pf_nbr_hex(unsigned long long nbr, char *ref)
 	int					digit;
 	unsigned long long	num;
 
-//	ref = "0123456789abcdef";
 	num = nbr;
 	digit = ft_get_digit_hex(nbr);
 	result = (char *)malloc(sizeof(char) * digit + 1);

@@ -6,7 +6,7 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 05:40:01 by shabibol          #+#    #+#             */
-/*   Updated: 2022/04/02 19:13:34 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/04/04 16:35:40 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
@@ -61,7 +61,7 @@ int	ft_eval_format(t_print *tab, const char **str)
 	if (**str == 'p')
 		i = ft_printpointer(tab);
 	if (**str == '%')
-		i = write (1, "%", 1);
+		i = ft_print_percent(tab);
 	return (i);
 }
 
@@ -98,9 +98,15 @@ int	ft_printf(const char *str, ...)
 #include <stdio.h>
 int	main(void)
 {
-	ft_printf("test1: [%15c]\n", 'b');
-	printf("test1: [%15c]\n", 'b');
+	ft_printf("test1: [%%d]\n", 4);
+	printf("test1: [%%d]\n", 4);
 
-	ft_printf("test2: [%-10c]\n", 'b');
-	printf("test2: [%-10c]\n", 'b');
+	ft_printf("test2: [%10%]\n");
+	printf("test2: [%10%]\n");
+	
+	ft_printf("test3: [%-10%]\n");
+	printf("test3: [%-10%]\n");
+
+	ft_printf("test4: [%010%]\n");
+	printf("test4: [%010%]\n");
 }*/

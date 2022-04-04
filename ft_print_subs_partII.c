@@ -6,7 +6,7 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 18:22:51 by shabibol          #+#    #+#             */
-/*   Updated: 2022/04/02 19:04:26 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/04/04 18:22:26 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
@@ -57,4 +57,25 @@ int	ft_printpointer(t_print	*tab)
 		res = src2;
 	free(src);
 	return (ft_pf_putstr(res));
+}
+
+int	ft_print_percent(t_print *tab)
+{
+	char	*res;
+	char	*src;
+
+	src = "%";
+	if (tab->width)
+	{
+		if (tab->dash)
+			res = ft_str_padding(tab->width, src, " ", 1);
+		if (tab->zero)
+			res = ft_str_padding(tab->width, src, "0", 0);
+		if (!tab->dash && !tab->zero)
+			res = ft_str_padding(tab->width, src, " ", 0);
+		return (ft_pf_putstr(res));
+	}
+	else
+		res = src;
+	return (write(1, "%", 1));
 }

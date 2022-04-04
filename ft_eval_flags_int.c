@@ -6,7 +6,7 @@
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 18:05:57 by shabibol          #+#    #+#             */
-/*   Updated: 2022/04/02 18:55:13 by shabibol         ###   ########.fr       */
+/*   Updated: 2022/04/04 18:22:38 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
@@ -19,7 +19,10 @@ char	*ft_eval_space(t_print *tab, int src)
 	src2 = ft_int_add_char(src, ' ');
 	if (tab->pnt == 1)
 	{
-		src3 = ft_str_padding(tab->precision + 1, src2, "0", 1);
+		if (tab->precision == 0 && src == 0)
+			src3 = ft_strndup(src2, 1);
+		else
+			src3 = ft_str_padding(tab->precision + 1, src2, "0", 1);
 		free (src2);
 	}
 	else
@@ -35,7 +38,10 @@ char	*ft_eval_sign(t_print *tab, int src)
 	src2 = ft_int_add_char(src, '+');
 	if (tab->pnt == 1)
 	{
-		src3 = ft_str_padding(tab->precision + 1, src2, "0", 1);
+		if (tab->precision == 0 && src == 0)
+			src3 = ft_strndup(src2, 1);
+		else
+			src3 = ft_str_padding(tab->precision + 1, src2, "0", 1);
 		free (src2);
 	}
 	else
